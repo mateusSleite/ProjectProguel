@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Container } from "react-bootstrap";
 
 export const Nav = styled(Container)`
+    display: flex;
     width: 100%;
     height: 6em;
-    display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: black;
@@ -12,7 +12,25 @@ export const Nav = styled(Container)`
     @media (max-width: 768px) {
         flex-direction: row;
         justify-content: space-around;
-        height: 6em;
+        height: 5em;
+    }
+`;
+
+export const Nav2 = styled(Container)`
+    position: relative;
+    bottom: 1px;
+    display: none;
+    width: 100%;
+    height: 6em;
+    align-items: space-between;
+    justify-content: space-between;
+    background-color: black;
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 12em;
     }
 `;
 
@@ -62,6 +80,17 @@ export const DivNav = styled.div`
     
 `;
 
+export const DivNav2 = styled.div`
+    margin: 0 6em 0 6em;
+    @media (max-width: 1140px) {
+        margin: 0.5em 0em 0.5em 0em;
+    }
+    @media (max-width: 768px) {
+        margin-bottom: 0.8em;
+    }
+    
+`;
+
 export const LinkNav = styled.a`
     position: relative;
     
@@ -106,6 +135,24 @@ export const LinkButton = styled.a`
     }
 `;
 
+export const LinkButton2 = styled.a`
+    background-color: #f0444a;
+        width: 10em;
+        height: 3em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: box-shadow 0.3s ease-in-out; 
+
+        &:hover {
+            box-shadow: 0 0 15px 3px rgba(255, 0, 0, 0.6); 
+        }
+
+    @media (max-width: 768px) {
+        
+    }
+`;
+
 export const ImgButton = styled.img`
     height: 0.8em;
 `;
@@ -138,6 +185,19 @@ export const MenuButton = styled.button`
     }
 `;
 
+export const Centralize = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 10px;
+
+`;
+
+export const Suporte = styled.div`
+    width: 3em;
+    height: 1px;
+    background-color: black;
+`;
 
 
 
