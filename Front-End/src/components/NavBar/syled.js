@@ -51,10 +51,6 @@ export const ImgText = styled.img`
     }
 `;
 
-export const ImgNav = styled.img`
-    height: 0.9em;
-`;
-
 export const LogoGlobal = styled.div`
     display: flex;
     align-items: center;
@@ -93,6 +89,9 @@ export const DivNav2 = styled.div`
 
 export const LinkNav = styled.a`
     position: relative;
+    text-decoration: none;
+    color: white;
+    font-family: "Gotham";
     
     &::after {
         content: "";
@@ -125,6 +124,9 @@ export const LinkButton = styled.a`
         justify-content: center;
         align-items: center;
         transition: box-shadow 0.3s ease-in-out; 
+        font-family: "Gotham";
+        text-decoration: none;
+        color: black;
 
         &:hover {
             box-shadow: 0 0 15px 3px rgba(255, 0, 0, 0.6); 
@@ -143,7 +145,10 @@ export const LinkButton2 = styled.a`
         justify-content: center;
         align-items: center;
         transition: box-shadow 0.3s ease-in-out; 
-
+        font-family: "Gotham";
+        text-decoration: none;
+        color: black;
+        
         &:hover {
             box-shadow: 0 0 15px 3px rgba(255, 0, 0, 0.6); 
         }
