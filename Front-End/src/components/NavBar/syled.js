@@ -129,7 +129,7 @@ export const LinkButton = styled.a`
         color: black;
 
         &:hover {
-            box-shadow: 0 0 15px 3px rgba(255, 0, 0, 0.6); 
+            box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6); 
         }
 
     @media (max-width: 768px) {

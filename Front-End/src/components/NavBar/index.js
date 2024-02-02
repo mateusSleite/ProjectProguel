@@ -11,7 +11,7 @@ export default function NavBar() {
 
     return (
         <>
-            <Nav>
+            <Nav fluid>
                 <LogoGlobal>
                     <Img src={logo}></Img>
                     <ImgText src={textlogo}></ImgText>
