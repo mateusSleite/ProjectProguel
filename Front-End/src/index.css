@@ -3,6 +3,14 @@
   src: local('Gotham'), url("./assents/fonts/Gotham-HTF-Light.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: 'Wardrum';
+  src: local('Wardrum'), url("./assents/fonts/wardrum-bold-outline.ttf") format("truetype");
+}
+
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
