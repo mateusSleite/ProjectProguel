@@ -150,4 +150,20 @@ export const PowerImgDeitadoEsq = styled.img`
     }
 `;
 
+export const TitulosEtapas = styled.label`
+    font-size: 3em;
+    color: #f0444a;
+    font-family: "Redriver"; 
+`
+
+export const ProcessoEtapas = styled.label`
+    position: relative;
+    right: 4em;
+    margin-top: 4em;
+    font-size: 2em;
+    color: white;
+    font-family: "Gotham"; 
+`
+
+
 

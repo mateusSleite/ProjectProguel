@@ -1,4 +1,4 @@
-import { ImgCode, Home, DivFrase, Frase, Linha, Coluna, CardImg, EtapasDiv, Etapas, PowerImg, PowerImgDeitado, PowerImgDeitadoEsq } from "./syled"
+import { ImgCode, Home, DivFrase, Frase, Linha, Coluna, CardImg, EtapasDiv, Etapas, PowerImg, PowerImgDeitado, PowerImgDeitadoEsq, TitulosEtapas, ProcessoEtapas } from "./syled"
 import code from "../../assents/img/code.png"
 import back from "../../assents/img/back.png"
 import power from "../../assents/img/power.png"
@@ -24,8 +24,12 @@ export default function HomeCard() {
             </div>
             <EtapasDiv>
                 <Linha>
-                    <Coluna>
-                        
+                    <Coluna style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
+                        <div style={{display: "flex", alignItems: "center", flexDirection: "column", justifyContent: "center", marginTop:'7em', position: 'relative', left:'15em'}}>
+                            <TitulosEtapas>POSTAGEM</TitulosEtapas>
+                            <TitulosEtapas>DO</TitulosEtapas>
+                            <TitulosEtapas>PROBLEMA</TitulosEtapas>
+                        </div>
                     </Coluna>
                     <Coluna style={{display: "flex", alignItems: "center", marginTop:"2em", flexDirection: "column"}}>
                         <PowerImg src={powerreto}></PowerImg>
@@ -35,7 +39,7 @@ export default function HomeCard() {
                         <PowerImg src={powerreto}></PowerImg>
                     </Coluna>
                     <Coluna>
-                        
+                        <ProcessoEtapas>O CLIENTE DESCREVE O PROBLEMA DE PROGRAMAÇÃO, INCLUINDO DETALHES TÉCNICOS, REQUISITOS ESPECÍFICOS, E PRAZO DESEJADO.</ProcessoEtapas>
                     </Coluna>
                 </Linha>
             </EtapasDiv>

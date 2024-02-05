@@ -8,7 +8,10 @@
   src: local('Wardrum'), url("./assents/fonts/wardrum-bold-outline.ttf") format("truetype");
 }
 
-
+@font-face {
+  font-family: 'Redriver';
+  src: local('Redriver'), url("./assents/fonts/Redriver\ Thin\ Regular.otf") format("truetype");
+}
 
 
 body {
