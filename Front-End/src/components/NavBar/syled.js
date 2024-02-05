@@ -6,7 +6,7 @@ export const Nav = styled(Container)`
     width: 100%;
     height: 6em;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: black;
 
     @media (max-width: 768px) {
@@ -23,7 +23,7 @@ export const Nav2 = styled(Container)`
     width: 100%;
     height: 6em;
     align-items: space-between;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: black;
 
     @media (max-width: 768px) {
@@ -54,7 +54,6 @@ export const ImgText = styled.img`
 export const LogoGlobal = styled.div`
     display: flex;
     align-items: center;
-    margin-left: 3em;
 
     @media (max-width: 768px) {
         margin-left: 0em;
@@ -120,7 +119,6 @@ export const LinkButton = styled.a`
         width: 10em;
         height: 3em;
         display: flex;
-        margin-right: 1.94em !important;
         justify-content: center;
         align-items: center;
         transition: box-shadow 0.3s ease-in-out; 
