@@ -1,29 +1,32 @@
 @font-face {
-  font-family: 'Gotham';
-  src: local('Gotham'), url("./assents/fonts/Gotham-HTF-Light.ttf") format("truetype");
+  font-family: "Gotham";
+  src: local("Gotham"),
+    url("./assents/fonts/Gotham-HTF-Light.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Wardrum';
-  src: local('Wardrum'), url("./assents/fonts/wardrum-bold-outline.ttf") format("truetype");
+  font-family: "Wardrum";
+  src: local("Wardrum"),
+    url("./assents/fonts/wardrum-bold-outline.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Redriver';
-  src: local('Redriver'), url("./assents/fonts/Redriver\ Thin\ Regular.otf") format("truetype");
+  font-family: "Redriver";
+  src: local("Redriver"),
+    url("./assents/fonts/Redriver\ Thin\ Regular.otf") format("truetype");
 }
-
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

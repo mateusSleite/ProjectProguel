@@ -1,9 +1,13 @@
-import { ImgCode, Home, DivFrase, Frase, Linha, Coluna, CardImg, EtapasDiv, Etapas, PowerImg, PowerImgDeitado, PowerImgDeitadoEsq, TitulosEtapas, ProcessoEtapas } from "./syled"
+import { ImgCode, Home, DivFrase, Frase, Linha, Coluna, CardImg, EtapasDiv, Etapas, PowerImg, Footer, PowerImgP, Contatos, Volta, FooterImg, TituloDiv, TituloDivUl, ProcessoEtapasUlt, TituloDivDi, PowerImgDeitado, ProcessoEtapasEsq, PowerImgDeitadoEsq, TitulosEtapas, ProcessoEtapas, Cop } from "./syled"
 import code from "../../assents/img/code.png"
 import back from "../../assents/img/back.png"
 import powerreto from "../../assents/img/powerreto.png"
 import powerDireita from "../../assents/img/powerdireita.png"
 import powerEsquerda from "../../assents/img/powerEsquerda.png"
+import whats from "../../assents/img/whats.png"
+import insta from "../../assents/img/insta.png"
+import tel from "../../assents/img/tel.png"
+import email from "../../assents/img/email.png"
 
 export default function HomeCard() {
     return (
@@ -23,25 +27,48 @@ export default function HomeCard() {
             </div>
             <EtapasDiv>
                 <Linha>
-                    <Coluna style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
-                        <div style={{display: "flex", alignItems: "center", flexDirection: "column", justifyContent: "center", marginTop:'7em', position: 'relative', left:'15em'}}>
+                    <Coluna>
+                        <TituloDiv>
                             <TitulosEtapas>POSTAGEM</TitulosEtapas>
                             <TitulosEtapas>DO</TitulosEtapas>
                             <TitulosEtapas>PROBLEMA</TitulosEtapas>
-                        </div>
+                        </TituloDiv>
+                        <ProcessoEtapasEsq>UM CANAL DE CHAT PRIVADO É ABERTO ENTRE O CLIENTE E O PROGRAMADOR PARA DISCUTIR DETALHES ADICIONAIS, INCLUINDO PAGAMENTO, PRAZOS, E ENTREGAS ESPECÍFICAS</ProcessoEtapasEsq>
+                        <TituloDivUl>
+                            <TitulosEtapas>ENTREGA</TitulosEtapas>
+                            <TitulosEtapas>E</TitulosEtapas>
+                            <TitulosEtapas>PAGAMENTO</TitulosEtapas>
+                        </TituloDivUl>
                     </Coluna>
                     <Coluna style={{display: "flex", alignItems: "center", marginTop:"2em", flexDirection: "column"}}>
-                        <PowerImg src={powerreto}></PowerImg>
+                        <PowerImgP src={powerreto}></PowerImgP>
                         <PowerImgDeitado src={powerDireita}></PowerImgDeitado>
                         <PowerImg src={powerreto}></PowerImg>
                         <PowerImgDeitadoEsq src={powerEsquerda}></PowerImgDeitadoEsq>
                         <PowerImg src={powerreto}></PowerImg>
+                        <PowerImgDeitado src={powerDireita}></PowerImgDeitado>
+                        <PowerImg src={powerreto}></PowerImg>
                     </Coluna>
                     <Coluna>
-                        <ProcessoEtapas>O CLIENTE DESCREVE O PROBLEMA DE PROGRAMAÇÃO, INCLUINDO DETALHES TÉCNICOS, REQUISITOS ESPECÍFICOS, E PRAZO DESEJADO.</ProcessoEtapas>
+                        <ProcessoEtapas>O CLIENTE DESCREVE O PROBLEMA DE PROGRAMAÇÃO, INCLUINDO DETALHES TÉCNICOS, REQUISITOS ESPECÍFICOS, E PRAZO DESEJADO</ProcessoEtapas>
+                        <TituloDivDi>
+                            <TitulosEtapas>COMUNICAÇÃO</TitulosEtapas>
+                            <TitulosEtapas>E</TitulosEtapas>
+                            <TitulosEtapas>DESENVOLVIMENTO</TitulosEtapas>
+                        </TituloDivDi>
+                        <ProcessoEtapasUlt>O PROGRAMADOR ENVIA A SOLUÇÃO CONCLUÍDA ATRAVÉS DA PLATAFORMA, UMA VEZ QUE A SOLUÇÃO É ACEITA, O PAGAMENTO É LIBERADO PARA O PROGRAMADOR.</ProcessoEtapasUlt>
                     </Coluna>
                 </Linha>
             </EtapasDiv>
+            <Footer>
+                <Contatos>PARA MAIS INFORMAÇÕES</Contatos>
+            </Footer>
+            <Footer>
+                <Volta><FooterImg src={tel}></FooterImg></Volta>
+                <Volta><FooterImg src={email}></FooterImg></Volta>
+                <Volta><FooterImg src={whats}></FooterImg></Volta>
+                <Volta><FooterImg src={insta}></FooterImg></Volta>
+            </Footer>
         </>
     )
 }

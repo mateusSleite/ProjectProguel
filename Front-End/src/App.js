@@ -12,6 +12,11 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+<<<<<<< HEAD
+=======
+        <Route path="/" element={<NavBar />}>
+        </Route>
+>>>>>>> 1a57eca20c6724dc9cdd4c8aef3f88492e59a26a
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<CadastroPage />} />
       </Routes>
