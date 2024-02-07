@@ -1,9 +1,9 @@
 const express = require("express");
-const MenssageController = require("../controller/Menssage");
+const UserController = require("../controller/User.js")
 const route = express.Router();
 
 route
-//   .post("/send", MenssageController.sendMessage)
-//   .get("/list", MenssageController.listMessages);
+    .post("/register", UserController.register)
+    .post("/login", UserController.login)
 
 module.exports = route;

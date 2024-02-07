@@ -1,7 +1,6 @@
 import { ImgCode, Home, DivFrase, Frase, Linha, Coluna, CardImg, EtapasDiv, Etapas, PowerImg, PowerImgDeitado, PowerImgDeitadoEsq, TitulosEtapas, ProcessoEtapas } from "./syled"
 import code from "../../assents/img/code.png"
 import back from "../../assents/img/back.png"
-import power from "../../assents/img/power.png"
 import powerreto from "../../assents/img/powerreto.png"
 import powerDireita from "../../assents/img/powerdireita.png"
 import powerEsquerda from "../../assents/img/powerEsquerda.png"

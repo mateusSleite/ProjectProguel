@@ -11,9 +11,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<NavBar />}>
-          <Route path="hm" element={<Home />} />
-        </Route>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<CadastroPage />} />
       </Routes>
