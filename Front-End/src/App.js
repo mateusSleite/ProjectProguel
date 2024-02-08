@@ -6,14 +6,15 @@ import LoginPage from "./pages/Login";
 import CadastroPage from "./pages/Cadastro";
 import NotFoundPage from "./pages/NotFoundPage";
 import AccessDenied from "./pages/AccessDenied";
+import Principal from "./components/PrincipalCard";
+import Pedidos from "./pages/Pedidos";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/" element={<NavBar />}>
-        </Route>
+        <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<CadastroPage />} />
       </Routes>
