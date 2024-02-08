@@ -4,64 +4,106 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { Cartao } from "./styled";
 import { useState } from "react";
+import CryptoJS from "crypto-js";
+import { SECRET } from "../../env";
+import axios from "axios";
 
 export default function CadastroCard() {
+  const [name, setName] = useState("");
+  const [cpf, setCPF] = useState("");
+  const [date, setDate] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  var [name, setName] = useState("");
-  var [cpf, setCPF] = useState("");
-  var [date, setDate] = useState("");
-  var [email, setEmail] = useState("");
-  var [password, setPassword] = useState("");
-  var [confirmPassword, setConfirmPassword] = useState("");
-
-  function handleSubmit(){
-    // Implementar função
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const json = {
+      name,
+      cpf,
+      date,
+      email,
+      password,
+      confirmPassword,
+    };
+    const jsonCrypt = CryptoJS.AES.encrypt(
+      JSON.stringify(json),
+      SECRET
+    ).toString();
+    console.log(json)
+    try {
+      var res = await axios.post(
+        "http://localhost:8080/api/user/register",
+        {jsonCrypt}
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-
-
   return (
-    <Cartao>
-      <Form>
-        <Row className="mb-3">
-          <Form.Group className="mb-3" controlId="formGridNome">
-            <Form.Label>Nome</Form.Label>
-            <Form.Control type="name" value={name} onChange={(e) => setName(e.target.value)} />
-          </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+    <Cartao onSubmit={handleSubmit}>
+      <Row className="mb-3">
+        <Form.Group className="mb-3">
+          <Form.Label>Nome</Form.Label>
+          <Form.Control
+            type="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </Form.Group>
-        
-        <Col xs={12} sm={6} controlId="formGridCPF">
-            <Form.Label>CPF</Form.Label>
-            <Form.Control type="cpf" value={cpf} onChange={(e) => setCPF(e.target.value)}/>
-          </Col>
 
-          <Col xs={12} sm={6} controlId="formGridDate">
-            <Form.Label>Data de nascimento</Form.Label>
-            <Form.Control type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
-          </Col>
-        </Row>
+        <Form.Group className="mb-3">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
 
-        <Row className="mb-3">
-          <Col xs={12} sm={6} controlId="formGridSenha">
-            <Form.Label>Senha</Form.Label>
-            <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-          </Col>
+        <Col xs={12} sm={6}>
+          <Form.Label>CPF</Form.Label>
+          <Form.Control
+            type="cpf"
+            value={cpf}
+            onChange={(e) => setCPF(e.target.value)}
+          />
+        </Col>
 
-          <Col xs={12} sm={6} controlId="formGridConfirmSenha">
-            <Form.Label>Confirmar Senha</Form.Label>
-            <Form.Control type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
-          </Col>
-        </Row>     
+        <Col xs={12} sm={6}>
+          <Form.Label>Data de nascimento</Form.Label>
+          <Form.Control
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </Col>
+      </Row>
 
-        <Button variant="primary" type="submit">
-          Cadastrar
-        </Button>
-      </Form>
+      <Row className="mb-3">
+        <Col xs={12} sm={6} >
+          <Form.Label>Senha</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Col>
+
+        <Col xs={12} sm={6}>
+          <Form.Label>Confirmar Senha</Form.Label>
+          <Form.Control
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </Col>
+      </Row>
+
+      <Button variant="primary" type="submit">
+        Cadastrar
+      </Button>
     </Cartao>
   );
 }
-

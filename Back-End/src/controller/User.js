@@ -5,30 +5,30 @@ const CryptoJS = require("crypto-js");
 
 class UserController {
   static async register(req, res) {
-    // var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
-    // const decryptd = bytes.toString(CryptoJS.enc.Utf8);
-    // const json = JSON.parse(decryptd);
+    var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
+    const decryptd = bytes.toString(CryptoJS.enc.Utf8);
+    const json = JSON.parse(decryptd);
 
-    const { name, birth, email, password, confirmPassword, cpf } = req.body;
+    const { name, date, email, password, confirmPassword, cpf } = json;
 
     const emailExist = await User.findOne({ email: email });
     const cpfExist = await User.findOne({ cpf: cpf });
 
-    if (!name) return res.status(400).json({ menssage: "Nome é obrigatório" });
+    if (!name) return res.status(400).json({ message: "Nome é obrigatório11" });
 
-    if (!birth) return res.status(400).json({ menssage: "Data de nascimento é obrigatório" });
+    if (!date) return res.status(400).json({ message: "Data de nascimento é obrigatório" });
 
-    if (!email) return res.status(400).json({ menssage: "Email é obrigatório" });
+    if (!email) return res.status(400).json({ message: "Email é obrigatório" });
 
-    if (!password) return res.status(400).json({ menssage: "Senha é obrigatório" });
+    if (!password) return res.status(400).json({ message: "Senha é obrigatório" });
 
-    if (password != confirmPassword) return res.status(400).json({ menssage: "As senhas não são iguais" });
+    if (password != confirmPassword) return res.status(400).json({ message: "As senhas não são iguais" });
 
-    if (!cpf) return res.status(400).json({ menssage: "CPF é obrigatório" });
+    if (!cpf) return res.status(400).json({ message: "CPF é obrigatório" });
 
-    if (emailExist) return res.status(422).json({ menssage: "Já existe conta nesse e-mail" });
+    if (emailExist) return res.status(422).json({ message: "Já existe conta nesse e-mail" });
     
-    if (cpfExist) return res.status(422).json({ menssage: "Já existe conta nesse cpf" });
+    if (cpfExist) return res.status(422).json({ message: "Já existe conta nesse cpf" });
 
     const passwordCrypt = CryptoJS.AES.encrypt(
       password,
@@ -37,10 +37,11 @@ class UserController {
 
     const user = new User({
       name,
-      birth,
+      birth: date,
       email,
       password: passwordCrypt,
       cpf,
+      isAdm: false,
       createdAt: Date.now(),
       updatedAt: Date.now(),
       removedAt: null,
@@ -57,12 +58,13 @@ class UserController {
   }
 
   static async login(req, res) {
-    // var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
-    // const decryptd = bytes.toString(CryptoJS.enc.Utf8);
-    // const json = JSON.parse(decryptd);
-
+    
+    
+    var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
+    const decryptd = bytes.toString(CryptoJS.enc.Utf8);
+    const json = JSON.parse(decryptd);
     const { email, password } = req.body;
-
+    
     if (!email || !password)
       return res
         .status(400)
@@ -89,7 +91,7 @@ class UserController {
         },
         secret,
         {
-          expiresIn: "2 days",
+          expiresIn: "1 days",
         }
       );
       res.status(200).json({ token: token });
