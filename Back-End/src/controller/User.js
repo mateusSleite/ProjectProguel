@@ -5,13 +5,11 @@ const CryptoJS = require("crypto-js");
 
 class UserController {
   static async register(req, res) {
+    var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
+    const decryptd = bytes.toString(CryptoJS.enc.Utf8);
+    const json = JSON.parse(decryptd);
 
-    // var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
-    // const decryptd = bytes.toString(CryptoJS.enc.Utf8);
-    // const json = JSON.parse(decryptd);
-
-    const { name, date, email, password, confirmPassword, cpf } = req.body;
-    console.log("AQUI")
+    const { name, date, email, password, confirmPassword, cpf } = json;
 
     const emailExist = await User.findOne({ email: email });
     const cpfExist = await User.findOne({ cpf: cpf });

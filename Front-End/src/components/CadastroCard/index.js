@@ -34,10 +34,9 @@ export default function CadastroCard() {
     try {
       var res = await axios.post(
         "http://localhost:8080/api/user/register",
-        json
+        {jsonCrypt}
       );
     } catch (error) {
-      console.log("errorrrr")
       console.log(error);
     }
   }
