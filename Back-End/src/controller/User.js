@@ -16,19 +16,26 @@ class UserController {
 
     if (!name) return res.status(400).json({ message: "Nome é obrigatório11" });
 
-    if (!date) return res.status(400).json({ message: "Data de nascimento é obrigatório" });
+    if (!date)
+      return res
+        .status(400)
+        .json({ message: "Data de nascimento é obrigatório" });
 
     if (!email) return res.status(400).json({ message: "Email é obrigatório" });
 
-    if (!password) return res.status(400).json({ message: "Senha é obrigatório" });
+    if (!password)
+      return res.status(400).json({ message: "Senha é obrigatório" });
 
-    if (password != confirmPassword) return res.status(400).json({ message: "As senhas não são iguais" });
+    if (password != confirmPassword)
+      return res.status(400).json({ message: "As senhas não são iguais" });
 
     if (!cpf) return res.status(400).json({ message: "CPF é obrigatório" });
 
-    if (emailExist) return res.status(422).json({ message: "Já existe conta nesse e-mail" });
-    
-    if (cpfExist) return res.status(422).json({ message: "Já existe conta nesse cpf" });
+    if (emailExist)
+      return res.status(422).json({ message: "Já existe conta nesse e-mail" });
+
+    if (cpfExist)
+      return res.status(422).json({ message: "Já existe conta nesse cpf" });
 
     const passwordCrypt = CryptoJS.AES.encrypt(
       password,
@@ -58,13 +65,14 @@ class UserController {
   }
 
   static async login(req, res) {
-    
-    
+    console.log(req.body);
     var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, process.env.SECRET);
     const decryptd = bytes.toString(CryptoJS.enc.Utf8);
     const json = JSON.parse(decryptd);
-    const { email, password } = req.body;
-    
+
+
+    const { email, password } = json;
+
     if (!email || !password)
       return res
         .status(400)
@@ -101,8 +109,6 @@ class UserController {
         .json({ message: "Erro ao logar!", data: error.menssage });
     }
   }
-
-  
 }
 
 module.exports = UserController;
