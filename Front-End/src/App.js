@@ -17,6 +17,7 @@ function App() {
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<CadastroPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

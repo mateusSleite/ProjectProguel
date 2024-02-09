@@ -14,7 +14,7 @@ export const Cartao = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 40%;
 
   input {
     background-color: #333;
@@ -23,6 +23,7 @@ export const Cartao = styled(Form)`
     border-radius: 5px;
     padding: 8px;
     width: 100%;
+    margin-bottom: 10px;
   }
   input[type="name"],
   input[type="password"],

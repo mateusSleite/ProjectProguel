@@ -1,33 +1,31 @@
 const mongoose = require("mongoose");
 
-const Menssage = mongoose.model(
-  "Menssage",
+const Menssagem = mongoose.model(
+  "Menssagem",
   new mongoose.Schema({
     content: {
       type: String,
       required: true,
       minlength: 1,
     },
-    sender: {
-      type: String,
+    senderId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
-    receiver: {
-      type: String,
+    receiverId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
     createdAt: {
       type: Date,
       required: true,
     },
-    updatedAt: {
-      type: Date,
-      required: false,
-    },
     removedAt: {
       type: Date,
-      required: false,
+      default: null,
     },
   })
 );
-module.exports = Menssage;
+module.exports = Menssagem;
