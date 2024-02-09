@@ -89,7 +89,7 @@ export default function Principal() {
         const problemaAtual = problemasDeProgramacao.filter(problema => problema.tipo === tipo)[indices[tipo]];
 
         if (!problemaAtual) {
-            return;
+            return null;
         }
 
         return (
@@ -128,9 +128,11 @@ export default function Principal() {
             </AlinhaLabel>
             <Linha>
                 {Object.keys(tiposImagem).map((tipo, index) => (
-                    <Coluna key={index} xxl={4} xl={6} lg={6} xs={12} md={12}>
-                        {renderizarBordaPorTipo(tipo)}
-                    </Coluna>
+                    renderizarBordaPorTipo(tipo) != null && (
+                        <Coluna key={index} xxl={4} xl={6} lg={6} xs={12} md={12}>
+                            {renderizarBordaPorTipo(tipo)}
+                        </Coluna>
+                    )
                 ))}
             </Linha>
 
