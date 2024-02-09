@@ -7,6 +7,8 @@ import { useState } from "react";
 import CryptoJS from "crypto-js";
 import { SECRET } from "../../env";
 import axios from "axios";
+import { i18n } from "../../translate/i18n"
+
 
 export default function CadastroCard() {
   const [name, setName] = useState("");
@@ -45,7 +47,7 @@ export default function CadastroCard() {
     <Cartao onSubmit={handleSubmit}>
       <Row className="mb-3">
         <Form.Group className="mb-3">
-          <Form.Label>Nome</Form.Label>
+          <Form.Label>{i18n.t("cadastro.name")}</Form.Label>
           <Form.Control
             type="name"
             value={name}
@@ -54,7 +56,7 @@ export default function CadastroCard() {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>{i18n.t("cadastro.email")}</Form.Label>
           <Form.Control
             type="email"
             value={email}
@@ -63,7 +65,7 @@ export default function CadastroCard() {
         </Form.Group>
 
         <Col xs={12} sm={6}>
-          <Form.Label>CPF</Form.Label>
+          <Form.Label>{i18n.t("cadastro.cpf")}</Form.Label>
           <Form.Control
             type="cpf"
             value={cpf}
@@ -72,7 +74,7 @@ export default function CadastroCard() {
         </Col>
 
         <Col xs={12} sm={6}>
-          <Form.Label>Data de Nasc.</Form.Label>
+          <Form.Label>{i18n.t("cadastro.date")}.</Form.Label>
           <Form.Control
             type="date"
             value={date}
@@ -83,7 +85,7 @@ export default function CadastroCard() {
 
       <Row className="mb-3">
         <Col xs={12} sm={6} >
-          <Form.Label>Senha</Form.Label>
+          <Form.Label>{i18n.t("cadastro.password")}</Form.Label>
           <Form.Control
             type="password"
             value={password}
@@ -92,7 +94,7 @@ export default function CadastroCard() {
         </Col>
 
         <Col xs={12} sm={6}>
-          <Form.Label>Confirmar Senha</Form.Label>
+          <Form.Label>{i18n.t("cadastro.passConfirm")}</Form.Label>
           <Form.Control
             type="password"
             value={confirmPassword}
@@ -102,7 +104,7 @@ export default function CadastroCard() {
       </Row>
 
       <Button variant="primary" type="submit">
-        Cadastrar
+        {i18n.t("cadastro.button")}
       </Button>
     </Cartao>
   );

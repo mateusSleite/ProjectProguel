@@ -1,13 +1,12 @@
 import { Title, Container, Description } from "./styled"
+import { i18n } from "../../translate/i18n"
 
 export default function NotFoundPage(){
     return(
         <Container>
-            <Title>Erro 404</Title>
+            <Title>{i18n.t("NotFoundPage.title")}</Title>
             <Description>
-                <p>O erro 404 é um código de resposta HTTP que indica que o cliente pôde comunicar com o servidor, 
-                    mas o servidor não pôde encontrar o que foi pedido, ou foi configurado para não cumprir o pedido e não revelar a razão, 
-                    a página não existe mais ou a URL foi inserida incorretamente.</p>
+                <p>{i18n.t("NotFoundPage.notFound")}</p>
             </Description>
         </Container>
     )

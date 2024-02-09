@@ -6,6 +6,7 @@ import { useState } from "react";
 import { SECRET } from "../../env";
 import CryptoJS from "crypto-js";
 import axios from "axios";
+import { i18n } from "../../translate/i18n"
 
 export default function LoginCard() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function LoginCard() {
   return (
     <Cartao onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
-        <Form.Label>Email</Form.Label>
+        <Form.Label>{i18n.t("login.login")}</Form.Label>
         <Form.Control
           type="email"
           value={email}
@@ -43,7 +44,7 @@ export default function LoginCard() {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Senha</Form.Label>
+        <Form.Label>{i18n.t("login.password")}</Form.Label>
         <Form.Control
           type="password"
           value={password}
@@ -52,7 +53,7 @@ export default function LoginCard() {
       </Form.Group>
 
       <Button variant="primary" className="mb-3" onClick={handleSubmit}>
-        Login
+      {i18n.t("login.button")}
       </Button>
     </Cartao>
   );
