@@ -33,8 +33,8 @@ export const Frase = styled.label`
 export const FraseDe = styled.label`
     text-align: center;
     font-size: 3em;
+    margin-bottom: 0.5em;
     color: #f0444a;
-    margin-bottom: 1em;
     font-family: "Redriver"; 
     `;
 
@@ -152,5 +152,109 @@ export const LinkButton = styled.a`
     }
 `;
 
+export const CriarPedi = styled.a`
+    background-color: #f0444a;
+        width: 10em;
+        height: 3em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: box-shadow 0.3s ease-in-out; 
+        font-family: "Gotham";
+        text-decoration: none;
+        margin-bottom: 2em;
+        color: black;
+        cursor: pointer;
+        
+        &:hover {
+            box-shadow: 0 0 15px 3px rgba(255, 0, 0, 0.6); 
+        }
+
+    @media (max-width: 768px) {
+        
+    }
+`;
+
+export const FraseMo = styled.label`
+    margin-top: 0.5EM;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    font-family: "Gotham"; 
+`;
+
+export const FraseDeMo = styled.label`
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: #f0444a;
+    font-family: "Redriver"; 
+`;
+
+export const AlinhaLabelModal = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    border-top: 2px solid #fff; 
+    border-bottom: 2px solid #fff; 
+    border-left: 0; 
+    border-right: 0;
+    height: auto;
+    margin-bottom: 6em;
+    width: 20em;
+`;
+
+export const LabelModal = styled.label`
+    color: white;
+    font-family: "Redriver"; 
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+`;
+
+export const InputModal = styled.input`
+    background-color: transparent;
+    border: solid 2px #f0444a;
+    width: 70%;
+    height: 3em;
+    color: white;
+    margin-bottom: 1.5em;
+    font-family: "Gotham"; 
+    border-radius: 3px;
+`;
+
+export const Select = styled.select`
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 1.5em;
+    font-family: "Gotham"; 
+    width: 70%;
+    height: 3em;
+    border: 2px solid #f0444a;
+    background-color: transparent;
+    border-radius: 3px;
+    outline: none;
+    appearance: none; 
+
+    &:checked {
+        background-color: #f0444a;
+        color: #f0444a;
+    }
+
+    option {
+        color: white;
+        background-color: black; 
+        border: 2px solid #f0444a;
+    }
+
+    option[value=""][disabled] {
+        color: #f0444a;
+    }
+`;
 
 

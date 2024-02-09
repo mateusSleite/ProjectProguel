@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, FraseDe, BordaIn, DivButton, Linguagem, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res } from "./styled";
+import Modal from 'react-modal';
+import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal } from "./styled";
 import csharp from "../../assents/img/Lingua/csharp.png";
 import python from "../../assents/img/Lingua/python.png";
 import c from "../../assents/img/Lingua/c++.png";
@@ -62,11 +63,39 @@ const tiposImagem = {
     "sql": sql,
 };
 
+const customStyles = {
+    overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.50)',
+    },
+    content: {
+        top: '50%',
+        left: '50%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: '1000PX',
+        height: '800px',
+        backgroundColor: '#000000',
+        border: '1px solid #f0444a',
+    }
+};
+
 export default function Principal() {
+
+    const [modalVisivel, setModalVisivel] = useState(false);
+
     const [indices, setIndices] = useState(problemasDeProgramacao.reduce((acc, problema) => {
         acc[problema.tipo] = 0;
         return acc;
     }, {}));
+
+    const toggleModal = () => {
+        setModalVisivel(!modalVisivel);
+    };
 
     const irParaProximoProblema = (tipo) => {
         setIndices(prevIndices => ({
@@ -125,6 +154,7 @@ export default function Principal() {
             <AlinhaLabel>
                 <Frase>SOLUCIONE SEUS</Frase>
                 <FraseDe>DESAFIOS</FraseDe>
+                <CriarPedi onClick={toggleModal}>CRIAR PEDIDO</CriarPedi>
             </AlinhaLabel>
             <Linha>
                 {Object.keys(tiposImagem).map((tipo, index) => (
@@ -135,7 +165,46 @@ export default function Principal() {
                     )
                 ))}
             </Linha>
+            <Modal
+                isOpen={modalVisivel}
+                onRequestClose={toggleModal}
+                contentLabel="Example Modal"
+                style={customStyles}
+            >
+                <AlinhaLabelModal>
+                    <FraseMo>DESCREVA SEU</FraseMo>
+                    <FraseDeMo>PROBLEMA</FraseDeMo>
+                </AlinhaLabelModal>
+                <Linha style={{width: '100%'}}>
+                    <Coluna style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        <LabelModal>TÍTULO DO SEU PROBLEMA</LabelModal>
+                        <InputModal></InputModal>
+                        <LabelModal>DIFICULDADE</LabelModal>
+                        <Select>
+                            <option value="1">INICIANTE</option>
+                            <option value="2">INTERMEDIÁRIO</option>
+                            <option value="3">AVANÇADO</option>
+                            <option value="3">COMPLEXO</option>
+                        </Select>
+                        <LabelModal>CUSTO</LabelModal>
+                        <InputModal></InputModal>
+                        <LabelModal>LINGUAGEM</LabelModal>
+                        <Select>
+                            <option value="1">C++</option>
+                            <option value="2">C#</option>
+                            <option value="3">PYTHON</option>
+                            <option value="4">JAVA</option>
+                            <option value="5">JAVA SCRIPT</option>
+                            <option value="6">MONGO</option>
+                            <option value="7">PHP</option>
+                            <option value="8">REACT</option>
+                            <option value="9">BD</option>
+                        </Select>
+                    </Coluna>
+                    <Coluna></Coluna>
+                </Linha>
 
+            </Modal>
         </Prin>
     );
 }
