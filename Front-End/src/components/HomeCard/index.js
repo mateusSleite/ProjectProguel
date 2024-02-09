@@ -8,6 +8,7 @@ import whats from "../../assents/img/whats.png"
 import insta from "../../assents/img/insta.png"
 import tel from "../../assents/img/tel.png"
 import email from "../../assents/img/email.png"
+import { i18n } from "../../translate/i18n"
 
 export default function HomeCard() {
     return (
@@ -21,23 +22,23 @@ export default function HomeCard() {
                             <CardImg src={back}></CardImg>
                         </Coluna>
                     </Linha>
-                    <DivFrase><Frase>DESAFIOS DE PROGRAMAÇÃO ENCONTRAM SOLUÇÕES INOVADORAS. SE VOCÊ ESTÁ LUTANDO COM UM BUG TEIMOSO, PRECISA DE AJUDA PARA OTIMIZAR SEU CÓDIGO, OU ESTÁ BUSCANDO UMA SOLUÇÃO PERSONALIZADA PARA UM PROJETO COMPLEXO. CONECTAMOS VOCÊ DIRETAMENTE COM PROGRAMADORES EXPERIENTES PRONTOS PARA SOLUCIONAR QUALQUER PROBLEMA DE PROGRAMAÇÃO QUE VOCÊ POSSA TER. SEJA UM SIMPLES AJUSTE OU O DESENVOLVIMENTO DE UMA FUNCIONALIDADE INTEIRA, NOSSA COMUNIDADE DE TALENTOS ESTÁ AQUI PARA AJUDAR</Frase></DivFrase>
-                    <Etapas>COMO FUNCIONA?</Etapas>
+                    <DivFrase><Frase>{i18n.t("home.phrase")}</Frase></DivFrase>
+                    <Etapas>{i18n.t("home.stage")}</Etapas>
                 </Home>
             </div>
             <EtapasDiv>
                 <Linha>
                     <Coluna>
                         <TituloDiv>
-                            <TitulosEtapas>POSTAGEM</TitulosEtapas>
-                            <TitulosEtapas>DO</TitulosEtapas>
-                            <TitulosEtapas>PROBLEMA</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title1")}</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title2")}</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title3")}</TitulosEtapas>
                         </TituloDiv>
-                        <ProcessoEtapasEsq>UM CANAL DE CHAT PRIVADO É ABERTO ENTRE O CLIENTE E O PROGRAMADOR PARA DISCUTIR DETALHES ADICIONAIS, INCLUINDO PAGAMENTO, PRAZOS, E ENTREGAS ESPECÍFICAS</ProcessoEtapasEsq>
+                        <ProcessoEtapasEsq>{i18n.t("home.process")}</ProcessoEtapasEsq>
                         <TituloDivUl>
-                            <TitulosEtapas>ENTREGA</TitulosEtapas>
-                            <TitulosEtapas>E</TitulosEtapas>
-                            <TitulosEtapas>PAGAMENTO</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title4")}</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title5")}</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title6")}</TitulosEtapas>
                         </TituloDivUl>
                     </Coluna>
                     <Coluna style={{display: "flex", alignItems: "center", marginTop:"2em", flexDirection: "column"}}>
@@ -50,18 +51,18 @@ export default function HomeCard() {
                         <PowerImg src={powerreto}></PowerImg>
                     </Coluna>
                     <Coluna>
-                        <ProcessoEtapas>O CLIENTE DESCREVE O PROBLEMA DE PROGRAMAÇÃO, INCLUINDO DETALHES TÉCNICOS, REQUISITOS ESPECÍFICOS, E PRAZO DESEJADO</ProcessoEtapas>
+                        <ProcessoEtapas>{i18n.t("home.process2")}</ProcessoEtapas>
                         <TituloDivDi>
-                            <TitulosEtapas>COMUNICAÇÃO</TitulosEtapas>
-                            <TitulosEtapas>E</TitulosEtapas>
-                            <TitulosEtapas>DESENVOLVIMENTO</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title7")}</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title5")}</TitulosEtapas>
+                            <TitulosEtapas>{i18n.t("home.title8")}</TitulosEtapas>
                         </TituloDivDi>
-                        <ProcessoEtapasUlt>O PROGRAMADOR ENVIA A SOLUÇÃO CONCLUÍDA ATRAVÉS DA PLATAFORMA, UMA VEZ QUE A SOLUÇÃO É ACEITA, O PAGAMENTO É LIBERADO PARA O PROGRAMADOR.</ProcessoEtapasUlt>
+                        <ProcessoEtapasUlt>{i18n.t("home.process3")}</ProcessoEtapasUlt>
                     </Coluna>
                 </Linha>
             </EtapasDiv>
             <Footer>
-                <Contatos>PARA MAIS INFORMAÇÕES</Contatos>
+                <Contatos>{i18n.t("home.contacts")}</Contatos>
             </Footer>
             <Footer>
                 <Volta><FooterImg src={tel}></FooterImg></Volta>

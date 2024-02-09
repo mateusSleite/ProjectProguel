@@ -14,16 +14,18 @@ export const Cartao = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 250px;
 
   input {
-    background-color: #333;
+    background-color: blue;
     color: white;
     border: 1px solid #555;
     border-radius: 5px;
     padding: 8px;
     width: 100%;
+    margin-bottom: 10px;
   }
+
   input[type="name"],
   input[type="password"],
   input[type="CPF"],
@@ -42,11 +44,12 @@ export const Cartao = styled(Form)`
     margin-top: 10px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     max-width: 90%;
     padding: 15px;
+    margin-top: 20%;
     input {
-      margin-bottom: 8px; 
+      margin-bottom: 8px;
     }
   }
 `;
