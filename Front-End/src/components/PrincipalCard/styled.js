@@ -251,10 +251,6 @@ export const Select = styled.select`
         background-color: black; 
         border: 2px solid #f0444a;
     }
-
-    option[value=""][disabled] {
-        color: #f0444a;
-    }
 `;
 
 
