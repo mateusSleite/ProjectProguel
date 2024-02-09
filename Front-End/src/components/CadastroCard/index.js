@@ -72,7 +72,7 @@ export default function CadastroCard() {
         </Col>
 
         <Col xs={12} sm={6}>
-          <Form.Label>Data de nascimento</Form.Label>
+          <Form.Label>Data de Nasc.</Form.Label>
           <Form.Control
             type="date"
             value={date}
