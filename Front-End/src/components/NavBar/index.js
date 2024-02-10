@@ -17,7 +17,7 @@ export default function NavBar() {
                     <Img src={logo}></Img>
                     <ImgText src={textlogo}></ImgText>
                 </LogoGlobal>
-                <DivNav><LinkNav href="">{i18n.t("navbar.requests")}</LinkNav></DivNav>
+                <DivNav><LinkNav href="/pedidos">{i18n.t("navbar.requests")}</LinkNav></DivNav>
                 <DivNav><LinkNav href="">{i18n.t("navbar.about")}</LinkNav></DivNav>
                 <DivNav><LinkNav href="">{i18n.t("navbar.contacts")}</LinkNav></DivNav>
                 <DivButton>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal } from "./styled";
+import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal, TextAreaModalDes, LabelModalDes, CustoDiv, InputModalCusto, Traco, CriarPediModal } from "./styled";
 import csharp from "../../assents/img/Lingua/csharp.png";
 import python from "../../assents/img/Lingua/python.png";
 import c from "../../assents/img/Lingua/c++.png";
@@ -12,6 +12,7 @@ import react from "../../assents/img/Lingua/react.png";
 import sql from "../../assents/img/Lingua/sql.png";
 import setaes from "../../assents/img/setaes.png";
 import setadi from "../../assents/img/setadi.png";
+import CustomModal from '../ModalCard';
 
 const problemasDeProgramacao = [
     {
@@ -63,26 +64,6 @@ const tiposImagem = {
     "sql": sql,
 };
 
-const customStyles = {
-    overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.50)',
-    },
-    content: {
-        top: '50%',
-        left: '50%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        width: '1000PX',
-        height: '800px',
-        backgroundColor: '#000000',
-        border: '1px solid #f0444a',
-    }
-};
 
 export default function Principal() {
 
@@ -165,18 +146,15 @@ export default function Principal() {
                     )
                 ))}
             </Linha>
-            <Modal
+            <CustomModal
                 isOpen={modalVisivel}
-                onRequestClose={toggleModal}
-                contentLabel="Example Modal"
-                style={customStyles}
-            >
+                onRequestClose={toggleModal}>
                 <AlinhaLabelModal>
                     <FraseMo>DESCREVA SEU</FraseMo>
                     <FraseDeMo>PROBLEMA</FraseDeMo>
                 </AlinhaLabelModal>
-                <Linha style={{width: '100%'}}>
-                    <Coluna style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Linha style={{ width: '100%' }}>
+                    <Coluna style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <LabelModal>TÍTULO DO SEU PROBLEMA</LabelModal>
                         <InputModal></InputModal>
                         <LabelModal>DIFICULDADE</LabelModal>
@@ -187,7 +165,11 @@ export default function Principal() {
                             <option value="3">COMPLEXO</option>
                         </Select>
                         <LabelModal>CUSTO</LabelModal>
-                        <InputModal></InputModal>
+                        <CustoDiv>
+                            <InputModalCusto placeholder='PREÇO MIN.'></InputModalCusto>
+                            <Traco>-</Traco>
+                            <InputModalCusto placeholder='PREÇO MAX.'></InputModalCusto>
+                        </CustoDiv>
                         <LabelModal>LINGUAGEM</LabelModal>
                         <Select>
                             <option value="1">C++</option>
@@ -201,10 +183,13 @@ export default function Principal() {
                             <option value="9">BD</option>
                         </Select>
                     </Coluna>
-                    <Coluna></Coluna>
+                    <Coluna style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                        <LabelModalDes>DESCRIÇÃO DO SEU PROBLEMA</LabelModalDes>
+                        <TextAreaModalDes></TextAreaModalDes>
+                    </Coluna>
                 </Linha>
-
-            </Modal>
+                <CriarPediModal>CRIAR</CriarPediModal>
+            </CustomModal>
         </Prin>
     );
 }
