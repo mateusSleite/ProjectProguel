@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledModalContent = styled.div`
     background-color: #000000;
     border: 1px solid #f0444a;
-    width: 1000px; // Largura padrão
+    width: 1000px;
     height: 900px; 
     display: flex;
     justify-content: center;
