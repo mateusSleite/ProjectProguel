@@ -473,8 +473,8 @@ export const InputModalCusto = styled.input`
     background-color: transparent;
     text-align: center;
     border: solid 2px #f0444a;
-    width: 36%;
-    height: 8em;
+    width: 38%;
+    height: 3em;
     color: white;
     margin-bottom: 1.5em;
     font-family: "Gotham"; 
