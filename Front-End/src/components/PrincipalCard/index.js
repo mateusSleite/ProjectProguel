@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
+import { jwtDecode } from "jwt-decode";
 import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal, TextAreaModalDes, LabelModalDes, CustoDiv, InputModalCusto, Traco, CriarPediModal } from "./styled";
 import csharp from "../../assents/img/Lingua/csharp.png";
 import python from "../../assents/img/Lingua/python.png";
@@ -67,6 +67,13 @@ const tiposImagem = {
 
 export default function Principal() {
 
+    const [titulo, setTitulo] = useState('');
+    const [dificuldade, setDificuldade] = useState('1');
+    const [precoMin, setPrecoMin] = useState('');
+    const [precoMax, setPrecoMax] = useState('');
+    const [linguagem, setLinguagem] = useState('1');
+    const [descricao, setDescricao] = useState('');
+
     const [modalVisivel, setModalVisivel] = useState(false);
 
     const [indices, setIndices] = useState(problemasDeProgramacao.reduce((acc, problema) => {
@@ -76,6 +83,13 @@ export default function Principal() {
 
     const toggleModal = () => {
         setModalVisivel(!modalVisivel);
+    };
+
+    const handleClick = () => {
+        const token = sessionStorage.getItem("token");
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+        console.log(userId);
     };
 
     const irParaProximoProblema = (tipo) => {
@@ -156,22 +170,22 @@ export default function Principal() {
                 <Linha style={{ width: '100%' }}>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <LabelModal>TÍTULO DO SEU PROBLEMA</LabelModal>
-                        <InputModal></InputModal>
+                        <InputModal value={titulo} onChange={(event) => setTitulo(event.target.value)} />
                         <LabelModal>DIFICULDADE</LabelModal>
-                        <Select>
+                        <Select value={dificuldade} onChange={(event) => setDificuldade(event.target.value)}>
                             <option value="1">INICIANTE</option>
                             <option value="2">INTERMEDIÁRIO</option>
                             <option value="3">AVANÇADO</option>
-                            <option value="3">COMPLEXO</option>
+                            <option value="4">COMPLEXO</option>
                         </Select>
                         <LabelModal>CUSTO</LabelModal>
                         <CustoDiv>
-                            <InputModalCusto placeholder='PREÇO MIN.'></InputModalCusto>
+                            <InputModalCusto value={precoMin} onChange={(event) => setPrecoMin(event.target.value)} placeholder='PREÇO MIN.' />
                             <Traco>-</Traco>
-                            <InputModalCusto placeholder='PREÇO MAX.'></InputModalCusto>
+                            <InputModalCusto value={precoMax} onChange={(event) => setPrecoMax(event.target.value)} placeholder='PREÇO MAX.' />
                         </CustoDiv>
                         <LabelModal>LINGUAGEM</LabelModal>
-                        <Select>
+                        <Select value={linguagem} onChange={(event) => setLinguagem(event.target.value)}>
                             <option value="1">C++</option>
                             <option value="2">C#</option>
                             <option value="3">PYTHON</option>
@@ -185,10 +199,10 @@ export default function Principal() {
                     </Coluna>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                         <LabelModalDes>DESCRIÇÃO DO SEU PROBLEMA</LabelModalDes>
-                        <TextAreaModalDes></TextAreaModalDes>
+                        <TextAreaModalDes value={descricao} onChange={(event) => setDescricao(event.target.value)} />
                     </Coluna>
                 </Linha>
-                <CriarPediModal>CRIAR</CriarPediModal>
+                <CriarPediModal onClick={handleClick}>CRIAR</CriarPediModal>
             </CustomModal>
         </Prin>
     );

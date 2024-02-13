@@ -26,7 +26,7 @@ export default function LoginCard() {
     try {
       var res = await axios.post("http://localhost:8080/api/user/login", {jsonCrypt});
       sessionStorage.setItem("token", res.data.token);
-      navigate("/asdsadd");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
