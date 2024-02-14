@@ -9,7 +9,6 @@ export const Cartao = styled(Form)`
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -21,12 +20,18 @@ export const Cartao = styled(Form)`
     border-radius: 5px;
     padding: 8px;
     width: 100%;
+    margin-bottom: 15px; 
   }
 
   input[type="email"],
   input[type="password"] {
     background-color: #333;
     color: white;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
   }
 
@@ -45,6 +50,4 @@ export const Cartao = styled(Form)`
   @media (max-width: 400px) {
     padding: 30px;
   }
-
 `;
-

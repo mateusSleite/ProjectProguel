@@ -42,6 +42,32 @@ const messages = {
                 title: "Error 404",
                 notFound: "The 404 error is an HTTP response code that indicates that the client was able to communicate with the server, but the server could not find what was requested, or was configured to not fulfill the request and not reveal the reason, the page no longer exists or the URL was entered incorrectly."
             },
+            requests:{
+                details: "Details:",
+                difficulty: "Difficulty:",
+                cost: "Cost:",
+                button: "DETAILS",
+
+            },
+            mainRequests:{
+                title: "SOLVE YOUR",
+                subTitle: "CHALLENGES",
+                buttonTitle: "CREATE REQUEST"
+            },
+            createRequest:{
+                title: "DESCRIBE YOUR",
+                subTitle: "PROBLEM",
+                problemTitle: "TITLE OF YOUR PROBLEM",
+                difficulty: "DIFFICULTY",
+                beginner: "BEGINNER",
+                intermediary: "INTERMEDIARY",
+                advanced: "ADVANCED",
+                complex: "COMPLEX",
+                cost: "COST",
+                language: "LANGUAGE",
+                problemDescription: "DESCRIPTION OF YOUR PROBLEM",
+                button: "CREATE",
+            },
         }
     }
 }

@@ -7,6 +7,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import AccessDenied from "./pages/AccessDenied";
 import Pedidos from "./pages/Pedidos";
 import Details from "./pages/Details";
+import NavBar from "./components/NavbarLogin";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<CadastroPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/nav" element={<NavBar />} />
+
       </Routes>
     </>
   );

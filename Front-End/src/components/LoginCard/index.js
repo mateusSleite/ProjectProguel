@@ -6,7 +6,8 @@ import { useState } from "react";
 import { SECRET } from "../../env";
 import CryptoJS from "crypto-js";
 import axios from "axios";
-import { i18n } from "../../translate/i18n"
+import { i18n } from "../../translate/i18n";
+import NavBar from "../NavbarLogin";
 
 export default function LoginCard() {
   const navigate = useNavigate();
@@ -22,39 +23,53 @@ export default function LoginCard() {
       JSON.stringify(json),
       SECRET
     ).toString();
-    
+
     try {
-      var res = await axios.post("http://localhost:8080/api/user/login", {jsonCrypt});
+      var res = await axios.post("http://localhost:8080/api/user/login", {
+        jsonCrypt,
+      });
       sessionStorage.setItem("token", res.data.token);
       navigate("/");
     } catch (error) {
       console.log(error);
     }
   }
+  function navigateCadastro() {
+    navigate("/cadastro");
+  }
 
   return (
-    <Cartao onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label>{i18n.t("login.login")}</Form.Label>
-        <Form.Control
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </Form.Group>
+    <>
+      <NavBar />
 
-      <Form.Group className="mb-3">
-        <Form.Label>{i18n.t("login.password")}</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </Form.Group>
+      <Cartao onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>{i18n.t("login.login")}</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
 
-      <Button variant="primary" className="mb-3" onClick={handleSubmit}>
-      {i18n.t("login.button")}
-      </Button>
-    </Cartao>
+        <Form.Group className="mb-3">
+          <Form.Label>{i18n.t("login.password")}</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+
+        <div className="button-container">
+          <Button variant="primary" onClick={navigateCadastro}>
+            {i18n.t("cadastro.button")}
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            {i18n.t("login.button")}
+          </Button>
+        </div>
+      </Cartao>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, Problema, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal, TextAreaModalDes, LabelModalDes, CustoDiv, InputModalCusto, Traco, CriarPediModal, Res2 } from "./styled";
 import csharp from "../../assents/img/Lingua/csharp.png";
 import python from "../../assents/img/Lingua/python.png";
@@ -14,6 +15,8 @@ import setaes from "../../assents/img/setaes.png";
 import setadi from "../../assents/img/setadi.png";
 import CustomModal from '../ModalCard';
 import axios from "axios";
+import { i18n } from "../../translate/i18n"
+
 
 const tiposImagem = {
     "C#": csharp,
@@ -28,7 +31,7 @@ const tiposImagem = {
 };
 
 export default function Principal() {
-
+    const navigate = useNavigate();
     const [title, setTitulo] = useState('');
     const [difficulty, setDificuldade] = useState('INICIANTE');
     const [precoMin, setPrecoMin] = useState('');
@@ -81,6 +84,7 @@ export default function Principal() {
         try {
             const res = await axios.post('http://localhost:8080/api/pedido/create', pedidoObj);
             setModalVisivel(!modalVisivel);
+            navigate("/pedidos");
         } catch (error) {
             console.error(error);
         }
@@ -120,33 +124,33 @@ export default function Principal() {
                     <BordaIn>
                         <DivDetalhes>
                             <TituloPedido>{problemaAtual.title}</TituloPedido>
-                            <Especificacoes>Detalhes:</Especificacoes>
+                            <Especificacoes>{i18n.t("requests.details")}</Especificacoes>
                             <Res>{problemaAtual.text}</Res>
-                            <Especificacoes>Dificuldade:</Especificacoes>
+                            <Especificacoes>{i18n.t("requests.difficulty")}:</Especificacoes>
                             <Res>{problemaAtual.difficulty}</Res>
-                            <Especificacoes>Custo:</Especificacoes>
+                            <Especificacoes>{i18n.t("requests.cost")}:</Especificacoes>
                             <div style={{ display: 'flex' }}>
                                 <Res2 style={{ marginLeft: '1.6em' }}>{problemaAtual.precoMin}</Res2>
                                 <Res2>-</Res2>
                                 <Res2>{problemaAtual.precoMax}</Res2>
                             </div>
-                        </DivDetalhes>
+                        </DivDetalhes >
                         <DivButton>
-                            <LinkButton>DETALHES</LinkButton>
+                            <LinkButton>{i18n.t("requests.button")}</LinkButton>
                         </DivButton>
-                    </BordaIn>
+                    </BordaIn >
                     <Buttom onClick={() => irParaProximoProblema(tipo)}><ImgButtom src={setadi} alt="Próximo" /></Buttom>
-                </EnglobaDivs>
-            </Borda>
+                </EnglobaDivs >
+            </Borda >
         );
     };
 
     return (
         <Prin fluid>
             <AlinhaLabel>
-                <Frase>SOLUCIONE SEUS</Frase>
-                <FraseDe>DESAFIOS</FraseDe>
-                <CriarPedi onClick={toggleModal}>CRIAR PEDIDO</CriarPedi>
+                <Frase>{i18n.t("mainRequests.title")}</Frase>
+                <FraseDe>{i18n.t("mainRequests.subTitle")}</FraseDe>
+                <CriarPedi onClick={toggleModal}>{i18n.t("mainRequests.buttonTitle")}</CriarPedi>
             </AlinhaLabel>
             <Linha>
                 {Object.keys(tiposImagem).map((tipo, index) => (
@@ -162,27 +166,27 @@ export default function Principal() {
                 isOpen={modalVisivel}
                 onRequestClose={toggleModal}>
                 <AlinhaLabelModal>
-                    <FraseMo>DESCREVA SEU</FraseMo>
-                    <FraseDeMo>PROBLEMA</FraseDeMo>
+                    <FraseMo>{i18n.t("createRequest.title")}</FraseMo>
+                    <FraseDeMo>{i18n.t("createRequest.subTitle")}</FraseDeMo>
                 </AlinhaLabelModal>
                 <Linha style={{ width: '100%' }}>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <LabelModal>TÍTULO DO SEU PROBLEMA</LabelModal>
+                        <LabelModal>{i18n.t("createRequest.problemTitle")}</LabelModal>
                         <InputModal value={title} onChange={(event) => setTitulo(event.target.value)} />
-                        <LabelModal>DIFICULDADE</LabelModal>
+                        <LabelModal>{i18n.t("createRequest.difficulty")}</LabelModal>
                         <Select value={difficulty} onChange={(event) => setDificuldade(event.target.value)}>
-                            <option value="INICIANTE">INICIANTE</option>
-                            <option value="INTERMEDIÁRIO">INTERMEDIÁRIO</option>
-                            <option value="AVANÇADO">AVANÇADO</option>
-                            <option value="COMPLEXO">COMPLEXO</option>
+                            <option value="INICIANTE">{i18n.t("createRequest.beginner")}</option>
+                            <option value="INTERMEDIÁRIO">{i18n.t("createRequest.intermediary")}</option>
+                            <option value="AVANÇADO">{i18n.t("createRequest.advanced")}</option>
+                            <option value="COMPLEXO">{i18n.t("createRequest.complex")}</option>
                         </Select>
-                        <LabelModal>CUSTO</LabelModal>
+                        <LabelModal>{i18n.t("createRequest.cost")}</LabelModal>
                         <CustoDiv>
                             <InputModalCusto value={precoMin} onChange={(event) => setPrecoMin(event.target.value)} placeholder='PREÇO MIN.' />
                             <Traco>-</Traco>
                             <InputModalCusto value={precoMax} onChange={(event) => setPrecoMax(event.target.value)} placeholder='PREÇO MAX.' />
                         </CustoDiv>
-                        <LabelModal>LINGUAGEM</LabelModal>
+                        <LabelModal>{i18n.t("createRequest.language")}</LabelModal>
                         <Select value={language} onChange={(event) => setLinguagem(event.target.value)}>
                             <option value="C++">C++</option>
                             <option value="C#">C#</option>
@@ -197,12 +201,13 @@ export default function Principal() {
 
                     </Coluna>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                        <LabelModalDes>DESCRIÇÃO DO SEU PROBLEMA</LabelModalDes>
+
+                        <LabelModalDes>{i18n.t("createRequest.problemDescription")}</LabelModalDes>
                         <TextAreaModalDes value={text} onChange={(event) => setDescricao(event.target.value)} />
                     </Coluna>
                 </Linha>
+                <CriarPediModal onClick={handleClick}>{i18n.t("createRequest.button")}</CriarPediModal>
 
-                <CriarPediModal onClick={handleClick}>CRIAR</CriarPediModal>
             </CustomModal>
         </Prin>
     );
