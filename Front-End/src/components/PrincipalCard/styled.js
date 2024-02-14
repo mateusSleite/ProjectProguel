@@ -242,7 +242,7 @@ export const LinkButton = styled.a`
 
 export const CriarPedi = styled.a`
     background-color: #f0444a;
-    width: 10em;
+    width: 11em;
     height: 3em;
     display: flex;
     justify-content: center;

@@ -13,6 +13,7 @@ import sql from "../../assents/img/Lingua/sql.png";
 import setaes from "../../assents/img/setaes.png";
 import setadi from "../../assents/img/setadi.png";
 import CustomModal from '../ModalCard';
+import { i18n } from "../../translate/i18n"
 
 const problemasDeProgramacao = [
     {
@@ -127,15 +128,15 @@ export default function Principal() {
                     <BordaIn>
                         <DivDetalhes>
                             <TituloPedido>{problemaAtual.titulo}</TituloPedido>
-                            <Especificacoes>Detalhes:</Especificacoes>
+                            <Especificacoes>{i18n.t("requests.details")}</Especificacoes>
                             <Res>{problemaAtual.detalhes}</Res>
-                            <Especificacoes>Dificuldade:</Especificacoes>
+                            <Especificacoes>{i18n.t("requests.difficulty")}:</Especificacoes>
                             <Res>{problemaAtual.dificuldade}</Res>
-                            <Especificacoes>Custo:</Especificacoes>
+                            <Especificacoes>{i18n.t("requests.cost")}:</Especificacoes>
                             <Res>{problemaAtual.custo}</Res>
                         </DivDetalhes>
                         <DivButton>
-                            <LinkButton>DETALHES</LinkButton>
+                            <LinkButton>{i18n.t("requests.button")}</LinkButton>
                         </DivButton>
                     </BordaIn>
                     <Buttom onClick={() => irParaProximoProblema(tipo)}><ImgButtom src={setadi} alt="Próximo" /></Buttom>
@@ -147,9 +148,9 @@ export default function Principal() {
     return (
         <Prin fluid>
             <AlinhaLabel>
-                <Frase>SOLUCIONE SEUS</Frase>
-                <FraseDe>DESAFIOS</FraseDe>
-                <CriarPedi onClick={toggleModal}>CRIAR PEDIDO</CriarPedi>
+                <Frase>{i18n.t("mainRequests.title")}</Frase>
+                <FraseDe>{i18n.t("mainRequests.subTitle")}</FraseDe>
+                <CriarPedi onClick={toggleModal}>{i18n.t("mainRequests.buttonTitle")}</CriarPedi>
             </AlinhaLabel>
             <Linha>
                 {Object.keys(tiposImagem).map((tipo, index) => (
@@ -164,27 +165,27 @@ export default function Principal() {
                 isOpen={modalVisivel}
                 onRequestClose={toggleModal}>
                 <AlinhaLabelModal>
-                    <FraseMo>DESCREVA SEU</FraseMo>
-                    <FraseDeMo>PROBLEMA</FraseDeMo>
+                    <FraseMo>{i18n.t("createRequest.title")}</FraseMo>
+                    <FraseDeMo>{i18n.t("createRequest.subTitle")}</FraseDeMo>
                 </AlinhaLabelModal>
                 <Linha style={{ width: '100%' }}>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <LabelModal>TÍTULO DO SEU PROBLEMA</LabelModal>
+                        <LabelModal>{i18n.t("createRequest.problemTitle")}</LabelModal>
                         <InputModal value={titulo} onChange={(event) => setTitulo(event.target.value)} />
-                        <LabelModal>DIFICULDADE</LabelModal>
+                        <LabelModal>{i18n.t("createRequest.difficulty")}</LabelModal>
                         <Select value={dificuldade} onChange={(event) => setDificuldade(event.target.value)}>
-                            <option value="1">INICIANTE</option>
-                            <option value="2">INTERMEDIÁRIO</option>
-                            <option value="3">AVANÇADO</option>
-                            <option value="4">COMPLEXO</option>
+                            <option value="1">{i18n.t("createRequest.beginner")}</option>
+                            <option value="2">{i18n.t("createRequest.intermediary")}</option>
+                            <option value="3">{i18n.t("createRequest.advanced")}</option>
+                            <option value="4">{i18n.t("createRequest.complex")}</option>
                         </Select>
-                        <LabelModal>CUSTO</LabelModal>
+                        <LabelModal>{i18n.t("createRequest.cost")}</LabelModal>
                         <CustoDiv>
                             <InputModalCusto value={precoMin} onChange={(event) => setPrecoMin(event.target.value)} placeholder='PREÇO MIN.' />
                             <Traco>-</Traco>
                             <InputModalCusto value={precoMax} onChange={(event) => setPrecoMax(event.target.value)} placeholder='PREÇO MAX.' />
                         </CustoDiv>
-                        <LabelModal>LINGUAGEM</LabelModal>
+                        <LabelModal>{i18n.t("createRequest.language")}</LabelModal>
                         <Select value={linguagem} onChange={(event) => setLinguagem(event.target.value)}>
                             <option value="1">C++</option>
                             <option value="2">C#</option>
@@ -198,11 +199,11 @@ export default function Principal() {
                         </Select>
                     </Coluna>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                        <LabelModalDes>DESCRIÇÃO DO SEU PROBLEMA</LabelModalDes>
+                        <LabelModalDes>{i18n.t("createRequest.problemDescription")}</LabelModalDes>
                         <TextAreaModalDes value={descricao} onChange={(event) => setDescricao(event.target.value)} />
                     </Coluna>
                 </Linha>
-                <CriarPediModal onClick={handleClick}>CRIAR</CriarPediModal>
+                <CriarPediModal onClick={handleClick}>{i18n.t("createRequest.button")}</CriarPediModal>
             </CustomModal>
         </Prin>
     );
