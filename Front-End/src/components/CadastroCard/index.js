@@ -7,7 +7,7 @@ import { useState } from "react";
 import CryptoJS from "crypto-js";
 import { SECRET } from "../../env";
 import axios from "axios";
-import { i18n } from "../../translate/i18n"
+import { i18n } from "../../translate/i18n";
 
 
 export default function CadastroCard() {

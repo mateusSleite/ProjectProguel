@@ -2,7 +2,7 @@ const Pedido = require("../model/Pedido");
 
 class PedidoController {
   static async createPedido(req, res) {
-    const { title, text, userId, value, date } = req.body;
+    const { userId, title, text, difficulty, language, precoMin, precoMax } = req.body;
 
     if (!title) return res.status(400).json({ menssage: "title é obrigatório" });
 
@@ -10,27 +10,28 @@ class PedidoController {
 
     if (!userId) return res.status(400).json({ menssage: "userId é obrigatório" });
 
-    if (!value) return res.status(400).json({ menssage: "value é obrigatório" });
-
-    if (!date) return res.status(400).json({ menssage: "date é obrigatório" });
 
     const newPedido = new Pedido({
       title,
       text,
-      user: userId,
-      value,
-      date: new Date(date),
-      likes: 0,
-      likedBy: [],
+      userId: userId,
+      difficulty,
+      language,
+      precoMin,
+      precoMax,
       createdAt: Date.now(),
       updatedAt: Date.now(),
       removedAt: null,
-    });
+    })
+
+    console.log(newPedido);
 
     try {
       await Pedido.create(newPedido);
       res.status(201).json({ menssage: "Pedido cadastrado com sucesso" });
+      console.log("aaa");
     } catch (error) {
+      console.log("bbb");
       return res.status(500).send({ message: "Erro ao cadastrar pedido", data: error.message });
     }
   }
@@ -69,16 +70,12 @@ class PedidoController {
     }
   }
 
-  static async getAll(req, res){
-    let page = req.params.page;
-    let limit = 10;
-    let skip = limit * (page -1);
-
-    try{
-      const pedidos = await Pedido.find().skip(skip).limit(limit);
+  static async getAll(req, res) {
+    try {
+      const pedidos = await Pedido.find();
       return res.status(200).send(pedidos);
-    } catch(error){
-      return res.status(500).send({ menssag: "Falha em carregar os pedidos" })
+    } catch (error) {
+      return res.status(500).send({ mensagem: "Falha em carregar os pedidos" });
     }
   }
 

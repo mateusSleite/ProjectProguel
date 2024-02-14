@@ -5,5 +5,5 @@ const router = express.Router();
 router
     .post("/create", PedidoController.createPedido)
     .post("/like/:id", PedidoController.likePedido)
-    .get("/:page", PedidoController.getAll)
+    .get("/pedidos", PedidoController.getAll)
 module.exports = router;

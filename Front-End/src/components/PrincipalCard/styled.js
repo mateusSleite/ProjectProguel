@@ -200,6 +200,35 @@ export const Res = styled.label`
     }
 `;
 
+export const Res2 = styled.label`
+    font-size: 1EM;
+    font-family: "Gotham"; 
+    margin: 0 0.2em 0.5em 0;
+    @media (max-width: 1400px) {
+        font-size: 0.8em;
+    }
+    @media (max-width: 992px) {
+        font-size: 1EM;
+    }
+    @media (max-width: 768px) {
+        font-size: 0.6em;
+    }
+`;
+
+export const Problema = styled.label`
+    font-size: 1EM;
+    font-family: "Gotham"; 
+    @media (max-width: 1400px) {
+        font-size: 0.8em;
+    }
+    @media (max-width: 992px) {
+        font-size: 1EM;
+    }
+    @media (max-width: 768px) {
+        font-size: 0.6em;
+    }
+`;
+
 export const DivButton = styled.div`
     display: flex;
     justify-content: flex-end;
