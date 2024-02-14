@@ -96,6 +96,7 @@ class UserController {
       const token = jwt.sign(
         {
           id: user._id,
+          isAdm: user.isAdm
         },
         secret,
         {

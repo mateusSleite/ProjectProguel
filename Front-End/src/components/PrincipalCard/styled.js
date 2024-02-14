@@ -232,7 +232,8 @@ export const Problema = styled.label`
 
 export const DivButton = styled.div`
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     margin-right: 2em;
 `;
 
@@ -554,5 +555,27 @@ export const CriarPediModal = styled.a`
     }
     @media (max-width: 768px) {
         font-size: 0.6em;
+    }
+`;
+
+export const Delete = styled.a`
+    margin-left: 2em;
+    padding-bottom: 0.1em;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    
+`;
+
+export const BaldeLixo = styled.img`
+    height: 2.5em; 
+    @media (max-width: 1400px) {
+        height: 1.5em;
+    }
+    @media (max-width: 992px) {
+        height: 1.5em;
+    }
+    @media (max-width: 768px) {
+        height: 1.5em;
     }
 `;

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, Problema, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal, TextAreaModalDes, LabelModalDes, CustoDiv, InputModalCusto, Traco, CriarPediModal, Res2 } from "./styled";
+import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, Problema, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal, TextAreaModalDes, LabelModalDes, CustoDiv, InputModalCusto, Traco, CriarPediModal, Res2, Delete, BaldeLixo } from "./styled";
 import csharp from "../../assents/img/Lingua/csharp.png";
 import python from "../../assents/img/Lingua/python.png";
 import c from "../../assents/img/Lingua/c++.png";
 import java from "../../assents/img/Lingua/java.png";
 import js from "../../assents/img/Lingua/js.png";
+import balde from "../../assents/img/balde.png";
 import mongo from "../../assents/img/Lingua/mongo.png";
 import php from "../../assents/img/Lingua/php.png";
 import react from "../../assents/img/Lingua/react.png";
@@ -160,6 +161,7 @@ export default function Principal() {
                             </div>
                         </DivDetalhes >
                         <DivButton>
+                            <Delete><BaldeLixo src={balde}></BaldeLixo></Delete>
                             <LinkButton>{i18n.t("requests.button")}</LinkButton>
                         </DivButton>
                     </BordaIn >
