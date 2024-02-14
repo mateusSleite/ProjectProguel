@@ -32,6 +32,9 @@ const tiposImagem = {
 
 export default function Principal() {
     const navigate = useNavigate();
+    const [titleBool, setTitleBool] = useState(false);
+    const [precBool, setPrecBool] = useState(false);
+    const [descBool, setDescBool] = useState(false);
     const [title, setTitulo] = useState('');
     const [difficulty, setDificuldade] = useState('INICIANTE');
     const [precoMin, setPrecoMin] = useState('');
@@ -70,6 +73,16 @@ export default function Principal() {
         const token = sessionStorage.getItem('token');
         const decodedToken = jwtDecode(token);
         const userId = decodedToken.id;
+
+        if (title.length < 5) {
+            setTitleBool(true);
+        } else if (precoMax.length < 1 && precoMin.length < 1) {
+            setTitleBool(false);
+            setPrecBool(true);
+        } else if (text.length < 15) {
+            setPrecBool(false);
+            setDescBool(true);
+        }
 
         const pedidoObj = {
             userId,
@@ -123,9 +136,20 @@ export default function Principal() {
                     <Buttom onClick={() => irParaProblemaAnterior(tipo)}><ImgButtom src={setaes} alt="Anterior" /></Buttom>
                     <BordaIn>
                         <DivDetalhes>
-                            <TituloPedido>{problemaAtual.title}</TituloPedido>
+                            <TituloPedido>
+                                {problemaAtual.title.length > 25
+                                    ? `${problemaAtual.title.substring(0, 25)}...`
+                                    : problemaAtual.title
+                                }
+                            </TituloPedido>
+
                             <Especificacoes>{i18n.t("requests.details")}</Especificacoes>
-                            <Res>{problemaAtual.text}</Res>
+                            <Res>
+                                {problemaAtual.text.length > 40
+                                    ? `${problemaAtual.text.substring(0, 40)} . . .`
+                                    : problemaAtual.text
+                                }
+                            </Res>
                             <Especificacoes>{i18n.t("requests.difficulty")}:</Especificacoes>
                             <Res>{problemaAtual.difficulty}</Res>
                             <Especificacoes>{i18n.t("requests.cost")}:</Especificacoes>
@@ -198,14 +222,22 @@ export default function Principal() {
                             <option value="REACT">REACT</option>
                             <option value="BD">BD</option>
                         </Select>
-
                     </Coluna>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-
                         <LabelModalDes>{i18n.t("createRequest.problemDescription")}</LabelModalDes>
                         <TextAreaModalDes value={text} onChange={(event) => setDescricao(event.target.value)} />
                     </Coluna>
                 </Linha>
+                {titleBool ? (
+                    <Problema>O TÍTULO NÃO PODE SER VAZIO OU CURTO</Problema>
+                ) : precBool ? (
+                    <Problema>O CUSTO DEVE SER PREENCHIDO</Problema>
+                ) : descBool ? (
+                    <Problema>A DESCRIÇÃO DEVE TER PELO MENOS 15 CARACTERES</Problema>
+                ) : (
+                    <div>.</div>
+                )}
+
                 <CriarPediModal onClick={handleClick}>{i18n.t("createRequest.button")}</CriarPediModal>
 
             </CustomModal>
