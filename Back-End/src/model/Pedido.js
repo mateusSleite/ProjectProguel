@@ -4,6 +4,10 @@ const { userSchema } = require("../controller/User");
 const Pedido = mongoose.model(
   "Pedido",
   new mongoose.Schema({
+    userId: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -14,28 +18,22 @@ const Pedido = mongoose.model(
       required: true,
       minlength: 15,
     },
-    user: {
+    difficulty:{
       type: String,
       required: true,
     },
-    value:{
-      type: Number,
+    language:{
+      type: String,
       required: true,
     },
-    date: {
-      type: Date,
+    precoMin:{
+      type: String,
       required: true,
     },
-    likes: {
-      type: Number,
+    precoMax:{
+      type: String,
       required: true,
     },
-    likedBy: [
-      {
-        type: String,
-        required: true
-      }
-    ],
     createdAt: {
       type: Date,
       required: true,

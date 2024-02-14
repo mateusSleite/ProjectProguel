@@ -200,6 +200,36 @@ export const Res = styled.label`
     }
 `;
 
+export const Res2 = styled.label`
+    font-size: 1EM;
+    font-family: "Gotham"; 
+    margin: 0 0.2em 0.5em 0;
+    @media (max-width: 1400px) {
+        font-size: 0.8em;
+    }
+    @media (max-width: 992px) {
+        font-size: 1EM;
+    }
+    @media (max-width: 768px) {
+        font-size: 0.6em;
+    }
+`;
+
+export const Problema = styled.label`
+    font-size: 1EM;
+    font-family: "Gotham";
+    color: white;
+    @media (max-width: 1400px) {
+        font-size: 0.8em;
+    }
+    @media (max-width: 992px) {
+        font-size: 1EM;
+    }
+    @media (max-width: 768px) {
+        font-size: 0.6em;
+    }
+`;
+
 export const DivButton = styled.div`
     display: flex;
     justify-content: flex-end;
@@ -506,7 +536,7 @@ export const CriarPediModal = styled.a`
         transition: box-shadow 0.3s ease-in-out; 
         font-family: "Gotham";
         text-decoration: none;
-        margin-top: 2em;
+        margin-top: 1.8em;
         color: black;
         cursor: pointer;
         
@@ -516,10 +546,10 @@ export const CriarPediModal = styled.a`
 
     @media (max-width: 1400px) {
         font-size: 1.1em;
-        margin-top: 1em;
+        margin-top: 0.8em;
     }
     @media (max-width: 992px) {
-        margin-top: 1.5em;
+        margin-top: 1.3em;
         font-size: 0.7em;
     }
     @media (max-width: 768px) {

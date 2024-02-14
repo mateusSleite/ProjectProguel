@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
-import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal, TextAreaModalDes, LabelModalDes, CustoDiv, InputModalCusto, Traco, CriarPediModal } from "./styled";
+import { useNavigate } from "react-router-dom";
+import { AlinhaLabel, Frase, Prin, Linha, Coluna, Borda, Problema, FraseDe, BordaIn, Select, DivButton, Linguagem, FraseDeMo, FraseMo, CriarPedi, DivDetalhes, LinkButton, Buttom, LogoImg, ConjuntoLogo, EnglobaDivs, ImgButtom, TituloPedido, Especificacoes, Res, AlinhaLabelModal, InputModal, LabelModal, TextAreaModalDes, LabelModalDes, CustoDiv, InputModalCusto, Traco, CriarPediModal, Res2 } from "./styled";
 import csharp from "../../assents/img/Lingua/csharp.png";
 import python from "../../assents/img/Lingua/python.png";
 import c from "../../assents/img/Lingua/c++.png";
@@ -13,96 +14,105 @@ import sql from "../../assents/img/Lingua/sql.png";
 import setaes from "../../assents/img/setaes.png";
 import setadi from "../../assents/img/setadi.png";
 import CustomModal from '../ModalCard';
+import axios from "axios";
 import { i18n } from "../../translate/i18n"
 
-const problemasDeProgramacao = [
-    {
-        titulo: "PROBLEMA COM NÃO SEI OQ",
-        detalhes: "EU TAVA COM PROBLEMA TAL AI ACONTECEU ISSO TAVA TUDO DEU MERDA . . .",
-        dificuldade: "INTERMEDIÁRIO",
-        custo: "R$ 100 - 800",
-        tipo: "c#"
-    },
-    {
-        titulo: "A NÃO SEI OQ, NÃO SEI OQ, QUE TA LÁ",
-        detalhes: "A MAS TA BOM ENTÃO KKKKK",
-        dificuldade: "AVANÇADO",
-        custo: "R$ 200 - 900",
-        tipo: "python"
-    },
-    {
-        titulo: "A PAIL SEI OQ, NÃO SEI OQ, QUE TA LÁ",
-        detalhes: "A MAS TA BOM ENTÃO KKKKK",
-        dificuldade: "AVANÇADO",
-        custo: "R$ 200 - 900",
-        tipo: "python"
-    },
-    {
-        titulo: "A PAIL SEI OQ, NÃO SEI OQ, QUE TA LÁ",
-        detalhes: "A MAS TA BOM ENTÃO KKKKK",
-        dificuldade: "AVANÇADO",
-        custo: "R$ 200 - 900",
-        tipo: "mongo"
-    },
-    {
-        titulo: "A PAIL SEI OQ, NÃO SEI OQ, QUE TA LÁ",
-        detalhes: "A MAS TA BOM ENTÃO KKKKK",
-        dificuldade: "AVANÇADO",
-        custo: "R$ 200 - 900",
-        tipo: "react"
-    },
-];
 
 const tiposImagem = {
-    "c#": csharp,
-    "python": python,
-    "c++": c,
-    "java": java,
-    "javascript": js,
-    "mongo": mongo,
-    "php": php,
-    "react": react,
-    "sql": sql,
+    "C#": csharp,
+    "PYTHON": python,
+    "C++": c,
+    "JAVA": java,
+    "JAVASCRIPT": js,
+    "MONGO": mongo,
+    "PHP": php,
+    "REACT": react,
+    "SQL": sql,
 };
 
-
 export default function Principal() {
-
-    const [titulo, setTitulo] = useState('');
-    const [dificuldade, setDificuldade] = useState('1');
+    const navigate = useNavigate();
+    const [titleBool, setTitleBool] = useState(false);
+    const [precBool, setPrecBool] = useState(false);
+    const [descBool, setDescBool] = useState(false);
+    const [title, setTitulo] = useState('');
+    const [difficulty, setDificuldade] = useState('INICIANTE');
     const [precoMin, setPrecoMin] = useState('');
     const [precoMax, setPrecoMax] = useState('');
-    const [linguagem, setLinguagem] = useState('1');
-    const [descricao, setDescricao] = useState('');
+    const [language, setLinguagem] = useState('C++');
+    const [text, setDescricao] = useState('');
+    const [indices, setIndices] = useState({});
+    const [problemasDeProgramacao, setProblemasDeProgramacao] = useState([]);
 
     const [modalVisivel, setModalVisivel] = useState(false);
 
-    const [indices, setIndices] = useState(problemasDeProgramacao.reduce((acc, problema) => {
-        acc[problema.tipo] = 0;
-        return acc;
-    }, {}));
+    useEffect(() => {
+        const fetchProblemas = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/pedido/pedidos');
+                setProblemasDeProgramacao(response.data);
+                setIndices(response.data.reduce((acc, problema) => {
+                    acc[problema.language] = 0;
+                    console.log(acc);
+                    return acc;
+                }, {}));
+            } catch (error) {
+                console.error('Erro ao buscar problemas:', error);
+            }
+        };
+        fetchProblemas();
+    }, []);
+
+
 
     const toggleModal = () => {
         setModalVisivel(!modalVisivel);
     };
 
-    const handleClick = () => {
-        const token = sessionStorage.getItem("token");
+    const handleClick = async () => {
+        const token = sessionStorage.getItem('token');
         const decodedToken = jwtDecode(token);
         const userId = decodedToken.id;
-        console.log(userId);
+
+        if (title.length < 5) {
+            setTitleBool(true);
+        } else if (precoMax.length < 1 && precoMin.length < 1) {
+            setTitleBool(false);
+            setPrecBool(true);
+        } else if (text.length < 15) {
+            setPrecBool(false);
+            setDescBool(true);
+        }
+
+        const pedidoObj = {
+            userId,
+            title,
+            difficulty,
+            precoMin,
+            precoMax,
+            language,
+            text
+        };
+
+        try {
+            const res = await axios.post('http://localhost:8080/api/pedido/create', pedidoObj);
+            setModalVisivel(!modalVisivel);
+            navigate("/pedidos");
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const irParaProximoProblema = (tipo) => {
         setIndices(prevIndices => ({
             ...prevIndices,
-            [tipo]: (prevIndices[tipo] + 1) % problemasDeProgramacao.filter(problema => problema.tipo === tipo).length
+            [tipo]: (prevIndices[tipo] + 1) % problemasDeProgramacao.filter(problema => problema.language === tipo).length
         }));
     };
 
     const irParaProblemaAnterior = (tipo) => {
         setIndices(prevIndices => {
-            const totalProblemas = problemasDeProgramacao.filter(problema => problema.tipo === tipo).length;
+            const totalProblemas = problemasDeProgramacao.filter(problema => problema.language === tipo).length;
             return {
                 ...prevIndices,
                 [tipo]: (prevIndices[tipo] - 1 + totalProblemas) % totalProblemas
@@ -111,8 +121,7 @@ export default function Principal() {
     };
 
     const renderizarBordaPorTipo = (tipo) => {
-        const problemaAtual = problemasDeProgramacao.filter(problema => problema.tipo === tipo)[indices[tipo]];
-
+        const problemaAtual = problemasDeProgramacao.filter(problema => problema.language === tipo)[indices[tipo]];
         if (!problemaAtual) {
             return null;
         }
@@ -127,21 +136,36 @@ export default function Principal() {
                     <Buttom onClick={() => irParaProblemaAnterior(tipo)}><ImgButtom src={setaes} alt="Anterior" /></Buttom>
                     <BordaIn>
                         <DivDetalhes>
-                            <TituloPedido>{problemaAtual.titulo}</TituloPedido>
+                            <TituloPedido>
+                                {problemaAtual.title.length > 25
+                                    ? `${problemaAtual.title.substring(0, 25)}...`
+                                    : problemaAtual.title
+                                }
+                            </TituloPedido>
+
                             <Especificacoes>{i18n.t("requests.details")}</Especificacoes>
-                            <Res>{problemaAtual.detalhes}</Res>
+                            <Res>
+                                {problemaAtual.text.length > 40
+                                    ? `${problemaAtual.text.substring(0, 40)} . . .`
+                                    : problemaAtual.text
+                                }
+                            </Res>
                             <Especificacoes>{i18n.t("requests.difficulty")}:</Especificacoes>
-                            <Res>{problemaAtual.dificuldade}</Res>
+                            <Res>{problemaAtual.difficulty}</Res>
                             <Especificacoes>{i18n.t("requests.cost")}:</Especificacoes>
-                            <Res>{problemaAtual.custo}</Res>
-                        </DivDetalhes>
+                            <div style={{ display: 'flex' }}>
+                                <Res2 style={{ marginLeft: '1.6em' }}>{problemaAtual.precoMin}</Res2>
+                                <Res2>-</Res2>
+                                <Res2>{problemaAtual.precoMax}</Res2>
+                            </div>
+                        </DivDetalhes >
                         <DivButton>
                             <LinkButton>{i18n.t("requests.button")}</LinkButton>
                         </DivButton>
-                    </BordaIn>
+                    </BordaIn >
                     <Buttom onClick={() => irParaProximoProblema(tipo)}><ImgButtom src={setadi} alt="Próximo" /></Buttom>
-                </EnglobaDivs>
-            </Borda>
+                </EnglobaDivs >
+            </Borda >
         );
     };
 
@@ -154,12 +178,13 @@ export default function Principal() {
             </AlinhaLabel>
             <Linha>
                 {Object.keys(tiposImagem).map((tipo, index) => (
-                    renderizarBordaPorTipo(tipo) != null && (
+                    renderizarBordaPorTipo(tipo) !== null && (
                         <Coluna key={index} xxl={4} xl={6} lg={6} xs={12} md={12}>
                             {renderizarBordaPorTipo(tipo)}
                         </Coluna>
                     )
                 ))}
+
             </Linha>
             <CustomModal
                 isOpen={modalVisivel}
@@ -171,13 +196,13 @@ export default function Principal() {
                 <Linha style={{ width: '100%' }}>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <LabelModal>{i18n.t("createRequest.problemTitle")}</LabelModal>
-                        <InputModal value={titulo} onChange={(event) => setTitulo(event.target.value)} />
+                        <InputModal value={title} onChange={(event) => setTitulo(event.target.value)} />
                         <LabelModal>{i18n.t("createRequest.difficulty")}</LabelModal>
-                        <Select value={dificuldade} onChange={(event) => setDificuldade(event.target.value)}>
-                            <option value="1">{i18n.t("createRequest.beginner")}</option>
-                            <option value="2">{i18n.t("createRequest.intermediary")}</option>
-                            <option value="3">{i18n.t("createRequest.advanced")}</option>
-                            <option value="4">{i18n.t("createRequest.complex")}</option>
+                        <Select value={difficulty} onChange={(event) => setDificuldade(event.target.value)}>
+                            <option value="INICIANTE">{i18n.t("createRequest.beginner")}</option>
+                            <option value="INTERMEDIÁRIO">{i18n.t("createRequest.intermediary")}</option>
+                            <option value="AVANÇADO">{i18n.t("createRequest.advanced")}</option>
+                            <option value="COMPLEXO">{i18n.t("createRequest.complex")}</option>
                         </Select>
                         <LabelModal>{i18n.t("createRequest.cost")}</LabelModal>
                         <CustoDiv>
@@ -186,24 +211,35 @@ export default function Principal() {
                             <InputModalCusto value={precoMax} onChange={(event) => setPrecoMax(event.target.value)} placeholder='PREÇO MAX.' />
                         </CustoDiv>
                         <LabelModal>{i18n.t("createRequest.language")}</LabelModal>
-                        <Select value={linguagem} onChange={(event) => setLinguagem(event.target.value)}>
-                            <option value="1">C++</option>
-                            <option value="2">C#</option>
-                            <option value="3">PYTHON</option>
-                            <option value="4">JAVA</option>
-                            <option value="5">JAVA SCRIPT</option>
-                            <option value="6">MONGO</option>
-                            <option value="7">PHP</option>
-                            <option value="8">REACT</option>
-                            <option value="9">BD</option>
+                        <Select value={language} onChange={(event) => setLinguagem(event.target.value)}>
+                            <option value="C++">C++</option>
+                            <option value="C#">C#</option>
+                            <option value="PYTHON">PYTHON</option>
+                            <option value="JAVA">JAVA</option>
+                            <option value="JAVA SCRIPT">JAVA SCRIPT</option>
+                            <option value="MONGO">MONGO</option>
+                            <option value="PHP">PHP</option>
+                            <option value="REACT">REACT</option>
+                            <option value="BD">BD</option>
                         </Select>
                     </Coluna>
                     <Coluna style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                         <LabelModalDes>{i18n.t("createRequest.problemDescription")}</LabelModalDes>
-                        <TextAreaModalDes value={descricao} onChange={(event) => setDescricao(event.target.value)} />
+                        <TextAreaModalDes value={text} onChange={(event) => setDescricao(event.target.value)} />
                     </Coluna>
                 </Linha>
+                {titleBool ? (
+                    <Problema>O TÍTULO NÃO PODE SER VAZIO OU CURTO</Problema>
+                ) : precBool ? (
+                    <Problema>O CUSTO DEVE SER PREENCHIDO</Problema>
+                ) : descBool ? (
+                    <Problema>A DESCRIÇÃO DEVE TER PELO MENOS 15 CARACTERES</Problema>
+                ) : (
+                    <div>.</div>
+                )}
+
                 <CriarPediModal onClick={handleClick}>{i18n.t("createRequest.button")}</CriarPediModal>
+
             </CustomModal>
         </Prin>
     );
