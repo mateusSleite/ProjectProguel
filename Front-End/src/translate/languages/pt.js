@@ -5,7 +5,6 @@ const messages = {
         login: "Email",
         password: "Senha",
         button: "Entrar",
-        traducao: "https://www.youtube.com/watch?v=5p9EMWwieyo",
       },
       cadastro: {
         name: "Nome",

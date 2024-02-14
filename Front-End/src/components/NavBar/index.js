@@ -20,9 +20,9 @@ import logo from "../../assents/img/Logo.png";
 import textlogo from "../../assents/img/TextLogo.png";
 import toggle from "../../assents/img/toggle.png";
 import { i18n } from "../../translate/i18n";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
+import SwitchEN from "../SwitchEN";
+
+
 
 export default function NavBar() {
   const [isNavVisible, setIsNavVisible] = useState(false);
@@ -51,22 +51,7 @@ export default function NavBar() {
           <LinkNav href="">{i18n.t("navbar.contacts")}</LinkNav>
         </DivNav>
 
-        <FormControlLabel
-          control={
-            <Switch
-              checked={state.checked}
-              onChange={handleChange}
-              name="checked"
-              style={{
-                color: state.checked ? "#F0444A" : "#feffff",
-              }}
-            />
-          }
-          label="EN"
-          style={{
-            color: "#F0444A",
-          }}
-        />
+        <SwitchEN></SwitchEN>
 
         <DivButton>
           <LinkButton href="/">{i18n.t("navbar.singup")}</LinkButton>
