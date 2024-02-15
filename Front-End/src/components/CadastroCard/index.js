@@ -1,6 +1,7 @@
 import logo from "../../assents/img/Logo.png";
-import { Coluna, Coluna2, Frase, Linha, LoginBord, LabelLogin, LogoImg, FraseDe, InputModal, LinkButton } from "./styled";
+import { Coluna, Coluna2, Frase, Linha, LoginBord, LabelLogin, LogoImg, FraseDe, InputModal, LinkButton, Centraliza, ToLogin } from "./styled";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import { SECRET } from "../../env";
 import axios from "axios";
@@ -10,6 +11,7 @@ import NavBar from "../NavbarLogin";
 export default function CadastroCard() {
   const [name, setName] = useState("");
   const [cpf, setCPF] = useState("");
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -32,18 +34,19 @@ export default function CadastroCard() {
       var res = await axios.post("http://localhost:8080/api/user/register", {
         jsonCrypt,
       });
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <>
+
+    <Centraliza>
       <NavBar />
       <LoginBord fluid>
         <Linha>
           <Coluna xxl={5} xl={5} lg={5} xs={5} md={5}>
-            {/* <Frase>SEJA</Frase> */}
             <LogoImg src={logo}></LogoImg>
             <FraseDe>{i18n.t("cadastro.welcome")}</FraseDe>
           </Coluna>
@@ -52,7 +55,7 @@ export default function CadastroCard() {
             <LabelLogin>{i18n.t("cadastro.name")}</LabelLogin>
             <InputModal value={name} onChange={(e) => setName(e.target.value)}></InputModal>
             <LabelLogin>{i18n.t("cadastro.email")}</LabelLogin>
-            <InputModal value={email}onChange={(e) => setEmail(e.target.value)}></InputModal>
+            <InputModal value={email} onChange={(e) => setEmail(e.target.value)}></InputModal>
             <LabelLogin>{i18n.t("cadastro.cpf")}</LabelLogin>
             <InputModal value={cpf} onChange={(e) => setCPF(e.target.value)}></InputModal>
             <LabelLogin>{i18n.t("cadastro.password")}</LabelLogin>
@@ -60,9 +63,12 @@ export default function CadastroCard() {
             <LabelLogin>{i18n.t("cadastro.passConfirm")}</LabelLogin>
             <InputModal type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></InputModal>
             <LinkButton onClick={handleSubmit}>{i18n.t("cadastro.button")}</LinkButton>
+            <ToLogin href="/login">LOGIN</ToLogin>
           </Coluna2>
         </Linha>
       </LoginBord>
-    </>
+    </Centraliza>
+
+
   );
 }

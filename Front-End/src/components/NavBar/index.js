@@ -15,14 +15,14 @@ import {
   DivButton,
   ImgToggle,
   Centralize,
+  Name,
 } from "./syled";
 import logo from "../../assents/img/Logo.png";
 import textlogo from "../../assents/img/TextLogo.png";
 import toggle from "../../assents/img/toggle.png";
 import { i18n } from "../../translate/i18n";
 import SwitchEN from "../SwitchEN";
-
-
+import { jwtDecode } from "jwt-decode";
 
 export default function NavBar() {
   const [isNavVisible, setIsNavVisible] = useState(false);
@@ -30,6 +30,17 @@ export default function NavBar() {
     checkedA: true,
     checkedB: true,
   });
+  let name = null;
+
+  const token = sessionStorage.getItem('token');
+  if (token) {
+    try {
+      const decodedToken = jwtDecode(token);
+      name = decodedToken.name;
+    } catch (error) {
+      console.error("Erro ao decodificar o token:", error);
+    }
+  }
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -52,13 +63,19 @@ export default function NavBar() {
         </DivNav>
 
         <SwitchEN></SwitchEN>
-
         <DivButton>
-          <LinkButton href="/">{i18n.t("navbar.singup")}</LinkButton>
-          <MenuButton onClick={() => setIsNavVisible(!isNavVisible)}>
-            <ImgToggle src={toggle}></ImgToggle>
-          </MenuButton>
+          {name ? (
+            <Name>OLÁ, {name.split(" ")[0].toUpperCase()}</Name>
+          ) : (
+            <>
+              <LinkButton href="/cadastro">{i18n.t("navbar.singup")}</LinkButton>
+              <MenuButton onClick={() => setIsNavVisible(!isNavVisible)}>
+                <ImgToggle src={toggle}></ImgToggle>
+              </MenuButton>
+            </>
+          )}
         </DivButton>
+
       </Nav>
       {isNavVisible && (
         <Nav2>

@@ -6,12 +6,23 @@ export const LoginBord = styled(Container)`
   align-items: center;
   width: 60em;
   height: 40em;
+  position: relative;
+  right: 140px;
   background-color: black;
+`;
+
+export const Centraliza = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Linha = styled(Row)`
     width: 100%;
     height: 80%;
+    @media (min-width: 768px) {
+        width: 100%;
+    }
 `;
 
 export const Coluna = styled(Col)`
@@ -35,15 +46,6 @@ export const Coluna2 = styled(Col)`
 
 export const LogoImg = styled.img`
     height: 7em; 
-    @media (max-width: 1400px) {
-      height: 8em; 
-    }
-    @media (max-width: 992px) {
-        height: 1.5em;
-    }
-    @media (max-width: 768px) {
-        height: 1.5em;
-    }
 `;
 
 export const Frase = styled.label`
@@ -128,7 +130,7 @@ export const LinkButton = styled.a`
     justify-content: center;
     align-items: center;
     margin-top: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     transition: box-shadow 0.3s ease-in-out; 
     font-family: "Redriver";
     text-decoration: none;
@@ -148,5 +150,13 @@ export const LinkButton = styled.a`
     @media (max-width: 768px) {
         font-size: 0.6em;
     }
+`;
+export const ToLogin = styled.a`
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 2em;
+    color: white;
+    font-family: "Gotham"; 
+    text-decoration: none;
 `;
 

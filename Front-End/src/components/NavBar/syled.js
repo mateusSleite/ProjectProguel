@@ -202,6 +202,11 @@ export const Suporte = styled.div`
     background-color: black;
 `;
 
+export const Name = styled.label`
+    color: white;
+    font-family: "Gotham";
+`;
+
 
 
 
