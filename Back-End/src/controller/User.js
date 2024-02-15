@@ -9,17 +9,12 @@ class UserController {
     const decryptd = bytes.toString(CryptoJS.enc.Utf8);
     const json = JSON.parse(decryptd);
 
-    const { name, date, email, password, confirmPassword, cpf } = json;
+    const { name, email, password, confirmPassword, cpf } = json;
 
     const emailExist = await User.findOne({ email: email });
     const cpfExist = await User.findOne({ cpf: cpf });
 
     if (!name) return res.status(400).json({ message: "Nome é obrigatório11" });
-
-    if (!date)
-      return res
-        .status(400)
-        .json({ message: "Data de nascimento é obrigatório" });
 
     if (!email) return res.status(400).json({ message: "Email é obrigatório" });
 
@@ -44,7 +39,6 @@ class UserController {
 
     const user = new User({
       name,
-      birth: date,
       email,
       password: passwordCrypt,
       cpf,

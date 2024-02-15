@@ -2,18 +2,19 @@ const messages = {
     en: {
         translations: {
             login:{
-                login: "Email",
-                password: "Password",
-                button: "Login"
+                login: "EMAIL",
+                password: "PASSWORD",
+                button: "LOGIN",
+                welcome: "WELCOME"
             },
             cadastro:{
-                name: "Name",
-                email: "Email",
+                name: "NAME",
+                email: "EMAIL",
                 cpf: "CPF",
-                date: "Date of Birth",
-                password: "Password",
-                passConfirm: "Confirm password",
-                button: "Register"
+                password: "PASSWORD",
+                passConfirm: "CONFIRM PASSWORD",
+                button: "REGISTER",
+                welcome: "WELCOME"
             },
             navbar:{
                 requests: "REQUESTS",

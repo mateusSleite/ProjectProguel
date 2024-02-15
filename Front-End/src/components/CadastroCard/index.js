@@ -1,8 +1,5 @@
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import { Cartao } from "./styled";
+import logo from "../../assents/img/Logo.png";
+import { Coluna, Coluna2, Frase, Linha, LoginBord, LabelLogin, LogoImg, FraseDe, InputModal, LinkButton } from "./styled";
 import { useState } from "react";
 import CryptoJS from "crypto-js";
 import { SECRET } from "../../env";
@@ -13,7 +10,6 @@ import NavBar from "../NavbarLogin";
 export default function CadastroCard() {
   const [name, setName] = useState("");
   const [cpf, setCPF] = useState("");
-  const [date, setDate] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -23,7 +19,6 @@ export default function CadastroCard() {
     const json = {
       name,
       cpf,
-      date,
       email,
       password,
       confirmPassword,
@@ -45,69 +40,29 @@ export default function CadastroCard() {
   return (
     <>
       <NavBar />
-      <Cartao onSubmit={handleSubmit}>
-        <Row className="mb-3">
-          <Form.Group className="mb-3">
-            <Form.Label>{i18n.t("cadastro.name")}</Form.Label>
-            <Form.Control
-              type="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>{i18n.t("cadastro.email")}</Form.Label>
-            <Form.Control
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-
-          <Col xs={12} sm={6}>
-            <Form.Label>{i18n.t("cadastro.cpf")}</Form.Label>
-            <Form.Control
-              type="cpf"
-              value={cpf}
-              onChange={(e) => setCPF(e.target.value)}
-            />
-          </Col>
-
-          <Col xs={12} sm={6}>
-            <Form.Label>{i18n.t("cadastro.date")}.</Form.Label>
-            <Form.Control
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </Col>
-        </Row>
-
-        <Row className="mb-3">
-          <Col xs={12} sm={6}>
-            <Form.Label>{i18n.t("cadastro.password")}</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Col>
-
-          <Col xs={12} sm={6}>
-            <Form.Label>{i18n.t("cadastro.passConfirm")}</Form.Label>
-            <Form.Control
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </Col>
-        </Row>
-
-        <Button variant="primary" type="submit">
-          {i18n.t("cadastro.button")}
-        </Button>
-      </Cartao>
+      <LoginBord fluid>
+        <Linha>
+          <Coluna xxl={5} xl={5} lg={5} xs={5} md={5}>
+            {/* <Frase>SEJA</Frase> */}
+            <LogoImg src={logo}></LogoImg>
+            <FraseDe>{i18n.t("cadastro.welcome")}</FraseDe>
+          </Coluna>
+          <Coluna2 xxl={7} xl={7} lg={7} xs={7} md={7}>
+            <Frase>{i18n.t("cadastro.button")}</Frase>
+            <LabelLogin>{i18n.t("cadastro.name")}</LabelLogin>
+            <InputModal value={name} onChange={(e) => setName(e.target.value)}></InputModal>
+            <LabelLogin>{i18n.t("cadastro.email")}</LabelLogin>
+            <InputModal value={email}onChange={(e) => setEmail(e.target.value)}></InputModal>
+            <LabelLogin>{i18n.t("cadastro.cpf")}</LabelLogin>
+            <InputModal value={cpf} onChange={(e) => setCPF(e.target.value)}></InputModal>
+            <LabelLogin>{i18n.t("cadastro.password")}</LabelLogin>
+            <InputModal type="password" value={password} onChange={(e) => setPassword(e.target.value)}></InputModal>
+            <LabelLogin>{i18n.t("cadastro.passConfirm")}</LabelLogin>
+            <InputModal type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></InputModal>
+            <LinkButton onClick={handleSubmit}>{i18n.t("cadastro.button")}</LinkButton>
+          </Coluna2>
+        </Linha>
+      </LoginBord>
     </>
   );
 }

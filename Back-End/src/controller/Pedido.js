@@ -79,7 +79,36 @@ class PedidoController {
     }
   }
 
+  static async getId(req, res) {
+    const { id } = req.params;
+    try {
+      const pedido = await Pedido.findById(id);
 
+      if (!pedido) {
+        return res.status(404).json({ message: "Pedido não encontrado" });
+      }
+
+      return res.status(200).json(pedido);
+    } catch (error) {
+      return res.status(500).json({ message: "Falha ao buscar o pedido", error: error.message });
+    }
+  }
+
+  static async deletePedido(req, res) {
+    const { id } = req.params;
+
+    try {
+      const pedido = await Pedido.findById(id);
+      if (!pedido) {
+        return res.status(404).json({ message: "Pedido não encontrado" });
+      }
+      await Pedido.findByIdAndDelete(id);
+
+      return res.status(200).json({ message: "Pedido excluído com sucesso" });
+    } catch (error) {
+      return res.status(500).json({ message: "Falha ao excluir o pedido", error: error.message });
+    }
+  }
 }
 
 module.exports = PedidoController;

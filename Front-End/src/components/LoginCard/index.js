@@ -1,9 +1,10 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import { Cartao } from "./styled";
+import { Coluna, Coluna2, Frase, Linha, LoginBord, LabelLogin, LogoImg, FraseDe, InputModal, LinkButton } from "./styled";
 import { useState } from "react";
 import { SECRET } from "../../env";
+import logo from "../../assents/img/Logo.png";
 import CryptoJS from "crypto-js";
 import axios from "axios";
 import { i18n } from "../../translate/i18n";
@@ -41,35 +42,23 @@ export default function LoginCard() {
   return (
     <>
       <NavBar />
-
-      <Cartao onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>{i18n.t("login.login")}</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>{i18n.t("login.password")}</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-
-        <div className="button-container">
-          <Button variant="primary" onClick={navigateCadastro}>
-            {i18n.t("cadastro.button")}
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            {i18n.t("login.button")}
-          </Button>
-        </div>
-      </Cartao>
+      <LoginBord fluid>
+        <Linha>
+          <Coluna xxl={5} xl={5} lg={5} xs={5} md={5}>
+            {/* <Frase>SEJA</Frase> */}
+            <LogoImg src={logo}></LogoImg>
+            <FraseDe>{i18n.t("login.welcome")}</FraseDe>
+          </Coluna>
+          <Coluna2 xxl={7} xl={7} lg={7} xs={7} md={7}>
+            <Frase>{i18n.t("login.button")}</Frase>
+            <LabelLogin>{i18n.t("login.login")}</LabelLogin>
+            <InputModal value={email} onChange={(e) => setEmail(e.target.value)}></InputModal>
+            <LabelLogin>{i18n.t("login.password")}</LabelLogin>
+            <InputModal type="password" value={password} onChange={(e) => setPassword(e.target.value)}></InputModal>
+            <LinkButton onClick={handleSubmit}>{i18n.t("login.button")}</LinkButton>
+          </Coluna2>
+        </Linha>
+      </LoginBord>
     </>
   );
 }

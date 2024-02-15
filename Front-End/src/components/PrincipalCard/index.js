@@ -32,6 +32,7 @@ const tiposImagem = {
 };
 
 export default function Principal() {
+    
     const navigate = useNavigate();
     const [titleBool, setTitleBool] = useState(false);
     const [precBool, setPrecBool] = useState(false);
@@ -44,8 +45,11 @@ export default function Principal() {
     const [text, setDescricao] = useState('');
     const [indices, setIndices] = useState({});
     const [problemasDeProgramacao, setProblemasDeProgramacao] = useState([]);
-
     const [modalVisivel, setModalVisivel] = useState(false);
+
+    const token = sessionStorage.getItem('token');
+    const decodedToken = jwtDecode(token);
+    const isAdm = decodedToken.isAdm;
 
     useEffect(() => {
         const fetchProblemas = async () => {
@@ -70,9 +74,16 @@ export default function Principal() {
         setModalVisivel(!modalVisivel);
     };
 
+    const deleteClick = async (problemaId) => {
+        try {
+            await axios.delete(`http://localhost:8080/api/pedido/pedidos/${problemaId}`);
+            window.location.reload(true);
+        } catch (error) {
+            console.error('Erro ao excluir o problema:', error);
+        }
+    };
     const handleClick = async () => {
-        const token = sessionStorage.getItem('token');
-        const decodedToken = jwtDecode(token);
+
         const userId = decodedToken.id;
 
         if (title.length < 5) {
@@ -98,7 +109,7 @@ export default function Principal() {
         try {
             const res = await axios.post('http://localhost:8080/api/pedido/create', pedidoObj);
             setModalVisivel(!modalVisivel);
-            navigate("/pedidos");
+            window.location.reload(true);
         } catch (error) {
             console.error(error);
         }
@@ -161,8 +172,14 @@ export default function Principal() {
                             </div>
                         </DivDetalhes >
                         <DivButton>
-                            <Delete><BaldeLixo src={balde}></BaldeLixo></Delete>
-                            <LinkButton>{i18n.t("requests.button")}</LinkButton>
+                            {isAdm ? (
+                                <Delete onClick={() => deleteClick(problemaAtual._id)}>
+                                    <BaldeLixo src={balde} />
+                                </Delete>
+                            ) : <Delete></Delete>}
+                            <LinkButton onClick={() => { navigate(`/pedidos/${problemaAtual._id}`); window.location.reload(true); }}>
+                                {i18n.t("requests.button")}
+                            </LinkButton>
                         </DivButton>
                     </BordaIn >
                     <Buttom onClick={() => irParaProximoProblema(tipo)}><ImgButtom src={setadi} alt="Próximo" /></Buttom>
