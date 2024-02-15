@@ -150,3 +150,11 @@ export const LinkButton = styled.a`
     }
 `;
 
+export const ToRegister = styled.a`
+    text-align: center;
+    font-size: 1em;
+    margin-TOP: 1em;
+    color: white;
+    font-family: "Gotham"; 
+    text-decoration: none;
+`;

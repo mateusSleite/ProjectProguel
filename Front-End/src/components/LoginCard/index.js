@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import { Coluna, Coluna2, Frase, Linha, LoginBord, LabelLogin, LogoImg, FraseDe, InputModal, LinkButton } from "./styled";
+import { Coluna, Coluna2, Frase, Linha, LoginBord, LabelLogin, LogoImg, FraseDe, InputModal, LinkButton, ToRegister } from "./styled";
 import { useState } from "react";
 import { SECRET } from "../../env";
 import logo from "../../assents/img/Logo.png";
@@ -45,7 +45,6 @@ export default function LoginCard() {
       <LoginBord fluid>
         <Linha>
           <Coluna xxl={5} xl={5} lg={5} xs={5} md={5}>
-            {/* <Frase>SEJA</Frase> */}
             <LogoImg src={logo}></LogoImg>
             <FraseDe>{i18n.t("login.welcome")}</FraseDe>
           </Coluna>
@@ -56,6 +55,7 @@ export default function LoginCard() {
             <LabelLogin>{i18n.t("login.password")}</LabelLogin>
             <InputModal type="password" value={password} onChange={(e) => setPassword(e.target.value)}></InputModal>
             <LinkButton onClick={handleSubmit}>{i18n.t("login.button")}</LinkButton>
+            <ToRegister href="/cadastro">REGISTRAR</ToRegister>
           </Coluna2>
         </Linha>
       </LoginBord>

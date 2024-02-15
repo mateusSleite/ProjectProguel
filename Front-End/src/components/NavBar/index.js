@@ -16,10 +16,13 @@ import {
   ImgToggle,
   Centralize,
   Name,
+  Sair,
+  SairImg,
 } from "./syled";
 import logo from "../../assents/img/Logo.png";
 import textlogo from "../../assents/img/TextLogo.png";
 import toggle from "../../assents/img/toggle.png";
+import sair from "../../assents/img/exit.png"
 import { i18n } from "../../translate/i18n";
 import SwitchEN from "../SwitchEN";
 import { jwtDecode } from "jwt-decode";
@@ -31,6 +34,12 @@ export default function NavBar() {
     checkedB: true,
   });
   let name = null;
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('token'); 
+    window.location.reload(true);
+  };
+  
 
   const token = sessionStorage.getItem('token');
   if (token) {
@@ -45,6 +54,7 @@ export default function NavBar() {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+
   return (
     <>
       <Nav fluid>
@@ -65,7 +75,13 @@ export default function NavBar() {
         <SwitchEN></SwitchEN>
         <DivButton>
           {name ? (
-            <Name>OLÁ, {name.split(" ")[0].toUpperCase()}</Name>
+            <div style={{display: 'flex', alignItems: 'baseline'}}>
+              <Name>OLÁ, {name.split(" ")[0].toUpperCase()}</Name>
+              <Sair onClick={handleLogout}>
+                <SairImg src={sair}></SairImg>
+              </Sair>
+              
+            </div>
           ) : (
             <>
               <LinkButton href="/cadastro">{i18n.t("navbar.singup")}</LinkButton>
@@ -89,7 +105,7 @@ export default function NavBar() {
             <DivNav2>
               <LinkNav href="">{i18n.t("navbar.contacts")}</LinkNav>
             </DivNav2>
-            <LinkButton2 href="/">{i18n.t("navbar.singup")}</LinkButton2>
+            <LinkButton2 href="/cadastro">{i18n.t("navbar.singup")}</LinkButton2>
           </Centralize>
           <Suporte></Suporte>
         </Nav2>

@@ -205,10 +205,24 @@ export const Suporte = styled.div`
 export const Name = styled.label`
     color: white;
     font-family: "Gotham";
+    @media (max-width: 768px) {
+        font-size: 0.61em;
+    }
 `;
 
+export const Sair = styled.a`
+    cursor: pointer;
+`;
 
-
+export const SairImg = styled.img`
+    height: 1.2em;
+    margin-left: 1.5em;
+    margin-bottom: 0.3em;
+    @media (max-width: 768px) {
+        height: 0.8em;
+        margin-bottom: 0em;
+    }
+`;
 
 
 

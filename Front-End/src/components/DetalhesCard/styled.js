@@ -146,11 +146,11 @@ export const ResChat = styled.label`
     margin-top: 2em;
     margin-bottom: 1em;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.5em;
     font-family: "Gotham"; 
     color: white;
     @media (max-width: 768px) {
-        font-size: 1.5em;
+        font-size: 1em;
     }
 `;
 

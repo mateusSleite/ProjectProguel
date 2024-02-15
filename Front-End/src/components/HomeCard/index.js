@@ -1,6 +1,7 @@
 import { ImgCode, Home, DivFrase, Frase, Linha, Coluna, CardImg, EtapasDiv, Etapas, PowerImg, Footer, PowerImgP, Contatos, Volta, FooterImg, TituloDiv, TituloDivUl, ProcessoEtapasUlt, TituloDivDi, PowerImgDeitado, ProcessoEtapasEsq, PowerImgDeitadoEsq, TitulosEtapas, ProcessoEtapas, Cop } from "./syled"
 import code from "../../assents/img/code.png"
 import back from "../../assents/img/back.png"
+import backin from "../../assents/img/backin.png"
 import powerreto from "../../assents/img/powerreto.png"
 import powerDireita from "../../assents/img/powerdireita.png"
 import powerEsquerda from "../../assents/img/powerEsquerda.png"
@@ -19,8 +20,13 @@ export default function HomeCard() {
 
                     <Linha>
                         <Coluna>
-                            <CardImg src={back}></CardImg>
+                            {i18n.t("home.title2") === "OF" ? (
+                                <CardImg src={backin}></CardImg>
+                            ) : (
+                                <CardImg src={back}></CardImg>
+                            )}
                         </Coluna>
+
                     </Linha>
                     <DivFrase><Frase>{i18n.t("home.phrase")}</Frase></DivFrase>
                     <Etapas>{i18n.t("home.stage")}</Etapas>
@@ -41,7 +47,7 @@ export default function HomeCard() {
                             <TitulosEtapas>{i18n.t("home.title6")}</TitulosEtapas>
                         </TituloDivUl>
                     </Coluna>
-                    <Coluna style={{display: "flex", alignItems: "center", marginTop:"2em", flexDirection: "column"}}>
+                    <Coluna style={{ display: "flex", alignItems: "center", marginTop: "2em", flexDirection: "column" }}>
                         <PowerImgP src={powerreto}></PowerImgP>
                         <PowerImgDeitado src={powerDireita}></PowerImgDeitado>
                         <PowerImg src={powerreto}></PowerImg>

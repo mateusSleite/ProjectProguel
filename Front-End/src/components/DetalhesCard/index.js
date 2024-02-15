@@ -2,6 +2,7 @@ import { Border, Coluna, Custo, CustoDiv, CustoInput, Desc, Details, DetalhesInp
 import { useParams } from 'react-router-dom';
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
+import { i18n } from "../../translate/i18n";
 
 export default function Detalhes() {
 
@@ -38,24 +39,24 @@ export default function Detalhes() {
                 <Coluna>
                     <Border>
                         <CustoDiv>
-                            <Custo>VALOR</Custo>
+                            <Custo>{i18n.t("details.value")}</Custo>
                             <Precos>
                                 <CustoInput style={{ marginRight: '0.2em' }}>R$</CustoInput><CustoInput>{dadosDoProblema.precoMin}</CustoInput><CustoInput>-</CustoInput><CustoInput>{dadosDoProblema.precoMax}</CustoInput>
                             </Precos>
                         </CustoDiv>
                         <DetalhesInput>
                             <DivInput>
-                                <DetalhesLabel>LINGUAGEM</DetalhesLabel>
+                                <DetalhesLabel>{i18n.t("details.language")}</DetalhesLabel>
                                 <ResLabel>{dadosDoProblema.language}</ResLabel>
                             </DivInput>
                             <DivInput>
-                                <DetalhesLabel>DIFICULDADE</DetalhesLabel>
+                                <DetalhesLabel>{i18n.t("details.difficultty")}</DetalhesLabel>
                                 <ResLabel>{dadosDoProblema.difficulty}</ResLabel>
                             </DivInput>
                         </DetalhesInput>
                         <CustoDiv>
-                            <ResChat>QUER RESOLVER ESTE PROBLEMA?</ResChat>
-                            <LinkButton>CHAT</LinkButton>
+                            <ResChat>{i18n.t("details.resolveProblem")}</ResChat>
+                            <LinkButton>{i18n.t("details.chat")}</LinkButton>
                         </CustoDiv>
                     </Border>
                 </Coluna>
