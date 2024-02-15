@@ -55,7 +55,7 @@ export default function LoginCard() {
             <LabelLogin>{i18n.t("login.password")}</LabelLogin>
             <InputModal type="password" value={password} onChange={(e) => setPassword(e.target.value)}></InputModal>
             <LinkButton onClick={handleSubmit}>{i18n.t("login.button")}</LinkButton>
-            <ToRegister href="/cadastro">REGISTRAR</ToRegister>
+            <ToRegister href="/cadastro">{i18n.t("cadastro.button")}</ToRegister>
           </Coluna2>
         </Linha>
       </LoginBord>

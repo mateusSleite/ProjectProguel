@@ -26,11 +26,11 @@ export default function HomeCard() {
                                 <CardImg src={back}></CardImg>
                             )}
                         </Coluna>
-
                     </Linha>
                     <DivFrase><Frase>{i18n.t("home.phrase")}</Frase></DivFrase>
+                    <div id="about"/>
                     <Etapas>{i18n.t("home.stage")}</Etapas>
-                </Home>
+                </Home >
             </div>
             <EtapasDiv>
                 <Linha>
@@ -70,7 +70,7 @@ export default function HomeCard() {
             <Footer>
                 <Contatos>{i18n.t("home.contacts")}</Contatos>
             </Footer>
-            <Footer>
+            <Footer id="contacts">
                 <Volta><FooterImg src={tel}></FooterImg></Volta>
                 <Volta><FooterImg src={email}></FooterImg></Volta>
                 <Volta><FooterImg src={whats}></FooterImg></Volta>

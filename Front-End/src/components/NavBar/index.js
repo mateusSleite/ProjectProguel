@@ -58,7 +58,7 @@ export default function NavBar() {
   return (
     <>
       <Nav fluid>
-        <LogoGlobal>
+        <LogoGlobal href="/">
           <Img src={logo}></Img>
           <ImgText src={textlogo}></ImgText>
         </LogoGlobal>
@@ -66,10 +66,10 @@ export default function NavBar() {
           <LinkNav href="/pedidos">{i18n.t("navbar.requests")}</LinkNav>
         </DivNav>
         <DivNav>
-          <LinkNav href="">{i18n.t("navbar.about")}</LinkNav>
+          <LinkNav href="/#about">{i18n.t("navbar.about")}</LinkNav>
         </DivNav>
         <DivNav>
-          <LinkNav href="">{i18n.t("navbar.contacts")}</LinkNav>
+          <LinkNav href="/#contacts">{i18n.t("navbar.contacts")}</LinkNav>
         </DivNav>
 
         <SwitchEN></SwitchEN>

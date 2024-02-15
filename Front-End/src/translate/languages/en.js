@@ -6,6 +6,7 @@ const messages = {
         password: "PASSWORD",
         button: "LOGIN",
         welcome: "WELCOME",
+        login2: "LOGIN"
       },
       cadastro: {
         name: "NAME",

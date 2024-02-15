@@ -34,7 +34,7 @@ export default function CadastroCard() {
       var res = await axios.post("http://localhost:8080/api/user/register", {
         jsonCrypt,
       });
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +63,7 @@ export default function CadastroCard() {
             <LabelLogin>{i18n.t("cadastro.passConfirm")}</LabelLogin>
             <InputModal type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></InputModal>
             <LinkButton onClick={handleSubmit}>{i18n.t("cadastro.button")}</LinkButton>
-            <ToLogin href="/login">LOGIN</ToLogin>
+            <ToLogin href="/login">{i18n.t("login.login2")}</ToLogin>
           </Coluna2>
         </Linha>
       </LoginBord>

@@ -13,7 +13,7 @@ export default function NavBar() {
     return (
         <>
             <Nav fluid>
-                <LogoGlobal>
+                <LogoGlobal href='/'>
                     <Img src={logo}></Img>
                     <ImgText src={textlogo}></ImgText>
                 </LogoGlobal>

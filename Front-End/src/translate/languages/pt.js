@@ -6,6 +6,7 @@ const messages = {
         password: "SENHA",
         button: "ENTRAR",
         welcome: "BEM-VINDO",
+        login2: "ENTRAR"
       },
       cadastro: {
         name: "NOME",

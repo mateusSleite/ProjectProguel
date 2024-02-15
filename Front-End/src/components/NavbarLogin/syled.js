@@ -32,7 +32,7 @@ export const ImgText = styled.img`
     }
 `;
 
-export const LogoGlobal = styled.div`
+export const LogoGlobal = styled.a`
     display: flex;
     align-items: center;
 
