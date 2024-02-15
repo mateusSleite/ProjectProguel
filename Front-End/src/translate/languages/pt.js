@@ -5,7 +5,7 @@ const messages = {
         login: "EMAIL",
         password: "SENHA",
         button: "ENTRAR",
-        welcome: "BEM-VINDO"
+        welcome: "BEM-VINDO",
       },
       cadastro: {
         name: "NOME",
@@ -14,7 +14,7 @@ const messages = {
         password: "SENHA",
         passConfirm: "CONFIRMAR SENHA",
         button: "CADASTRAR",
-        welcome: "BEM-VINDO"
+        welcome: "BEM-VINDO",
       },
       navbar: {
         requests: "PEDIDOS",
@@ -71,6 +71,13 @@ const messages = {
         language: "LINGUAGEM",
         problemDescription: "DESCRIÇÃO DO SEU PROBLEMA",
         button: "CRIAR",
+      },
+      details: {
+        value: "VALOR",
+        language: "LINGUAGEM",
+        difficultty: "DIFICULDADE",
+        resolveProblem: "QUER RESOLVER ESTE PROBLEMA?",
+        chat: "CHAT",
       },
     },
   },

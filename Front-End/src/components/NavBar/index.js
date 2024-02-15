@@ -21,6 +21,7 @@ import textlogo from "../../assents/img/TextLogo.png";
 import toggle from "../../assents/img/toggle.png";
 import { i18n } from "../../translate/i18n";
 import SwitchEN from "../SwitchEN";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -34,6 +35,7 @@ export default function NavBar() {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+
   return (
     <>
       <Nav fluid>
@@ -54,7 +56,7 @@ export default function NavBar() {
         <SwitchEN></SwitchEN>
 
         <DivButton>
-          <LinkButton href="/">{i18n.t("navbar.singup")}</LinkButton>
+          <LinkButton href="/cadastro">{i18n.t("navbar.singup")}</LinkButton>
           <MenuButton onClick={() => setIsNavVisible(!isNavVisible)}>
             <ImgToggle src={toggle}></ImgToggle>
           </MenuButton>
@@ -72,7 +74,7 @@ export default function NavBar() {
             <DivNav2>
               <LinkNav href="">{i18n.t("navbar.contacts")}</LinkNav>
             </DivNav2>
-            <LinkButton2 href="/">{i18n.t("navbar.singup")}</LinkButton2>
+            <LinkButton2 href="/cadastro">{i18n.t("navbar.singup")}</LinkButton2>
           </Centralize>
           <Suporte></Suporte>
         </Nav2>
